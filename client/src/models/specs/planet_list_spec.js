@@ -122,6 +122,12 @@ describe('PlanetList tests: ', function(){
     assert.strictEqual('unknown', planetList.planets[3].name)
   })
 
- 
+ ///SORTING BY ROTATION PERIOD
+
+ it('can sort by rotation period - ascending', function(){
+   planetList.sortAscending('rotationPeriod')
+   assert.strictEqual('Alderaan', planetList.planets[0].name)
+   assert.strictEqual('Tatooine', planetList.planets[1].name)
+ })
 
 })
