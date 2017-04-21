@@ -10,7 +10,8 @@ describe('Planet tests:', function(){
     planet = new Planet({
       name: 'Tatooine',
       population: '200',
-      diameter: '4500'
+      diameter: '4500',
+      rotation_period: '42'
     })
 
     unknownValuesPlanet = new Planet({
@@ -38,6 +39,10 @@ describe('Planet tests:', function(){
 
   it('reflects unknown diameter value if no numeric diameter given', function(){
     assert.strictEqual('unknown', unknownValuesPlanet.diameter)
+  })
+
+  it('has a rotation period, if known', function(){
+    assert.strictEqual(42, planet.rotationPeriod)
   })
 
 })
