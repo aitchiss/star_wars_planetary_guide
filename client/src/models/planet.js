@@ -3,7 +3,7 @@ var Planet = function(params){
   this.population = parseInt(params.population) || 'unknown'
   this.diameter = parseInt(params.diameter) || 'unknown'
   this.rotationPeriod = parseInt(params.rotation_period) || 'unknown'
-  this.orbitalPeriod = parseInt(params.orbital_period)
+  this.orbitalPeriod = parseInt(params.orbital_period) || 'unknown'
 }
 
 module.exports = Planet

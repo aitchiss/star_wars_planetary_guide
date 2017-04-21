@@ -19,7 +19,8 @@ describe('Planet tests:', function(){
       name: 'unknown',
       population: 'unknown',
       diameter: 'unknown',
-      rotation_period: 'unknown'
+      rotation_period: 'unknown',
+      orbital_period: 'unknown'
     })
   })
 
@@ -53,6 +54,10 @@ describe('Planet tests:', function(){
 
   it('has an orbital period, if known', function(){
     assert.strictEqual(321, planet.orbitalPeriod)
+  })
+
+  it('reflects unknown oribital period if no value given', function(){
+    assert.strictEqual('unknown', unknownValuesPlanet.orbitalPeriod)
   })
 
 })
