@@ -50,4 +50,10 @@ describe('PlanetList tests: ', function(){
     assert.strictEqual(3, planetList.planets.length)
   })
 
+  it('can sort planets by name a-z', function(){
+    planetList.sortAscending('name')
+    assert.strictEqual('Alderaan', planetList.planets[0].name)
+    assert.strictEqual('Endor', planetList.planets[1].name)
+  })
+
 })
