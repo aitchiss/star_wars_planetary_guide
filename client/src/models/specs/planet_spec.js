@@ -17,7 +17,8 @@ describe('Planet tests:', function(){
     unknownValuesPlanet = new Planet({
       name: 'unknown',
       population: 'unknown',
-      diameter: 'unknown'
+      diameter: 'unknown',
+      rotation_period: 'unknown'
     })
   })
 
@@ -43,6 +44,10 @@ describe('Planet tests:', function(){
 
   it('has a rotation period, if known', function(){
     assert.strictEqual(42, planet.rotationPeriod)
+  })
+
+  it('reflects unknown rotation period value if no value given', function(){
+    assert.strictEqual('unknown', unknownValuesPlanet.rotationPeriod)
   })
 
 })
