@@ -5,6 +5,7 @@ var Planet = function(params){
   this.rotationPeriod = parseInt(params.rotation_period) || 'unknown'
   this.orbitalPeriod = parseInt(params.orbital_period) || 'unknown'
   this.terrains = this.parseTerrains(params.terrain)
+  this.films = params.films
 }
 
 Planet.prototype = {

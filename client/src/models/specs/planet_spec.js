@@ -13,7 +13,8 @@ describe('Planet tests:', function(){
       diameter: '4500',
       rotation_period: '42',
       orbital_period: '321',
-      terrain: 'rainforests, rivers, mountains'
+      terrain: 'rainforests, rivers, mountains',
+      films: ['Clone Wars', 'A New Hope']
     })
 
     unknownValuesPlanet = new Planet({
@@ -68,6 +69,10 @@ describe('Planet tests:', function(){
 
   it('holds multiple terrains in array', function(){
     assert.strictEqual(3, planet.terrains.length)
+  })
+
+  it('can hold mutliple film titles', function(){
+    assert.strictEqual('A New Hope', planet.films[1])
   })
 
 })
