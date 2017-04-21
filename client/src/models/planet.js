@@ -4,7 +4,14 @@ var Planet = function(params){
   this.diameter = parseInt(params.diameter) || 'unknown'
   this.rotationPeriod = parseInt(params.rotation_period) || 'unknown'
   this.orbitalPeriod = parseInt(params.orbital_period) || 'unknown'
-  this.terrains = [params.terrain]
+  this.terrains = this.parseTerrains(params.terrain)
+}
+
+Planet.prototype = {
+  parseTerrains: function(terrainString){
+    var terrainArray = terrainString.split(',')
+    return terrainArray
+  }
 }
 
 module.exports = Planet

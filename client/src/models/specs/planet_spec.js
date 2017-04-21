@@ -13,7 +13,7 @@ describe('Planet tests:', function(){
       diameter: '4500',
       rotation_period: '42',
       orbital_period: '321',
-      terrain: 'rainforests'
+      terrain: 'rainforests, rivers, mountains'
     })
 
     unknownValuesPlanet = new Planet({
@@ -21,7 +21,8 @@ describe('Planet tests:', function(){
       population: 'unknown',
       diameter: 'unknown',
       rotation_period: 'unknown',
-      orbital_period: 'unknown'
+      orbital_period: 'unknown',
+      terrain: 'unknown'
     })
   })
 
@@ -63,6 +64,10 @@ describe('Planet tests:', function(){
 
   it('can hold a terrain value', function(){
     assert.strictEqual('rainforests', planet.terrains[0])
+  })
+
+  it('holds multiple terrains in array', function(){
+    assert.strictEqual(3, planet.terrains.length)
   })
 
 })
