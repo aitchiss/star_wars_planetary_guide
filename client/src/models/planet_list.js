@@ -6,6 +6,10 @@ PlanetList.prototype = {
   sortAscending: function(sortKey){
       if (sortKey === 'name'){
         this.planets.sort(this.compareNamesAsc)
+      } else if (sortKey === 'population'){
+        this.planets.sort(function(a, b){
+          return a.population - b.population
+        })
       }
   },
 
