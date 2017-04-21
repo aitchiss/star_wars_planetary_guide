@@ -106,12 +106,22 @@ describe('PlanetList tests: ', function(){
     assert.strictEqual('Endor', planetList.planets[1].name)
   })
 
+  it('places unknown diameter last when sorting ascending', function(){
+    planetList.sortAscending('diameter')
+    assert.strictEqual('unknown', planetList.planets[3].name)
+  })
+
   it('can sort by diameter - descending', function(){
     planetList.sortDescending('diameter')
     assert.strictEqual('Tatooine', planetList.planets[0].name)
     assert.strictEqual('Endor', planetList.planets[1].name)
   })
 
-  ////need to refactor to handle 'unknown' values
+  it('places unknown diameter last when sorting descending', function(){
+    planetList.sortDescending('diameter')
+    assert.strictEqual('unknown', planetList.planets[3].name)
+  })
+
+ 
 
 })
