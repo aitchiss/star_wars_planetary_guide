@@ -4,23 +4,33 @@ var PlanetList = function(planetsArray){
 
 PlanetList.prototype = {
   sortAscending: function(sortKey){
-      if (sortKey === 'name'){
+
+    switch (sortKey){
+      case 'name':
         this.planets.sort(this.compareNamesAsc)
-      } else if (sortKey === 'population'){
+        break
+      case 'population':
         this.planets.sort(function(a, b){
           return a.population - b.population
         })
-      }
+        break
+    }
+     
   },
 
   sortDescending: function(sortKey){
-    if (sortKey === 'name'){
-      this.planets.sort(this.compareNamesDesc)
-    } else if (sortKey === 'population'){
-      this.planets.sort(function(a, b){
-        return b.population - a.population
-      })
+
+    switch (sortKey){
+      case 'name':
+        this.planets.sort(this.compareNamesDesc)
+        break
+      case 'population':
+        this.planets.sort(function(a, b){
+          return b.population - a.population
+        })
+        break
     }
+  
   },
 
   compareNamesAsc: function(a, b){
