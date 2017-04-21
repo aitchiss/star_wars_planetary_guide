@@ -14,6 +14,10 @@ PlanetList.prototype = {
           return a.population - b.population
         })
         break
+      case 'diameter':
+      this.planets.sort(function(a, b){
+        return a.diameter - b.diameter
+      })
     }
      
   },

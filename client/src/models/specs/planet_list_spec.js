@@ -74,4 +74,10 @@ describe('PlanetList tests: ', function(){
     assert.strictEqual('Tatooine', planetList.planets[1].name)
   })
 
+  it('can sort by diameter - ascending', function(){
+    planetList.sortAscending('diameter')
+    assert.strictEqual('Alderaan', planetList.planets[0].name)
+    assert.strictEqual('Endor', planetList.planets[1].name)
+  })
+
 })
