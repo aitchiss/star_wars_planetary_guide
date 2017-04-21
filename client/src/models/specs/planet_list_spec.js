@@ -130,4 +130,9 @@ describe('PlanetList tests: ', function(){
    assert.strictEqual('Tatooine', planetList.planets[1].name)
  })
 
+ it('places unknown rotation period last when sorting ascending', function(){
+   planetList.sortAscending('rotationPeriod')
+   assert.strictEqual('unknown', planetList.planets[3].name)
+ })
+
 })
