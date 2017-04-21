@@ -11,7 +11,8 @@ describe('Planet tests:', function(){
       name: 'Tatooine',
       population: '200',
       diameter: '4500',
-      rotation_period: '42'
+      rotation_period: '42',
+      orbital_period: '321'
     })
 
     unknownValuesPlanet = new Planet({
@@ -48,6 +49,10 @@ describe('Planet tests:', function(){
 
   it('reflects unknown rotation period value if no value given', function(){
     assert.strictEqual('unknown', unknownValuesPlanet.rotationPeriod)
+  })
+
+  it('has an orbital period, if known', function(){
+    assert.strictEqual(321, planet.orbitalPeriod)
   })
 
 })
