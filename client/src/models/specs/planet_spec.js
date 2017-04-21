@@ -12,7 +12,8 @@ describe('Planet tests:', function(){
       population: '200',
       diameter: '4500',
       rotation_period: '42',
-      orbital_period: '321'
+      orbital_period: '321',
+      terrain: 'rainforests'
     })
 
     unknownValuesPlanet = new Planet({
@@ -58,6 +59,10 @@ describe('Planet tests:', function(){
 
   it('reflects unknown oribital period if no value given', function(){
     assert.strictEqual('unknown', unknownValuesPlanet.orbitalPeriod)
+  })
+
+  it('can hold a terrain value', function(){
+    assert.strictEqual('rainforests', planet.terrains[0])
   })
 
 })
