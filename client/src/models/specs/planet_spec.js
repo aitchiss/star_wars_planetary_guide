@@ -7,12 +7,17 @@ describe('Planet tests:', function(){
 
   beforeEach(function(){
     planet = new Planet({
-      name: 'Tatooine'
+      name: 'Tatooine',
+      population: '200'
     })
   })
 
   it('has a name', function(){
     assert.strictEqual('Tatooine', planet.name)
+  })
+
+  it('has a population', function(){
+    assert.strictEqual('200', planet.population)
   })
 
 })
