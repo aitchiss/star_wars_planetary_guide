@@ -38,17 +38,29 @@ describe('PlanetList tests: ', function(){
       films: ['Return of the Jedi']
     })
 
+    var unknownValuesPlanet = new Planet({
+      name: 'unknown',
+      population: 'unknown',
+      diameter: 'unknown',
+      rotation_period: 'unknown',
+      orbital_period: 'unknown',
+      terrain: 'unknown'
+    })
+
     var planets = []
     planets.push(planet1)
     planets.push(planet2)
     planets.push(planet3)
+    planets.push(unknownValuesPlanet)
 
     planetList = new PlanetList(planets)
   })
 
   it('holds an array of planets', function(){
-    assert.strictEqual(3, planetList.planets.length)
+    assert.strictEqual(4, planetList.planets.length)
   })
+
+  ///SORTING BY  NAME
 
   it('can sort planets by name a-z', function(){
     planetList.sortAscending('name')
@@ -58,9 +70,11 @@ describe('PlanetList tests: ', function(){
 
   it('can sort by name z-a', function(){
     planetList.sortDescending('name')
-    assert.strictEqual('Alderaan', planetList.planets[2].name)
-    assert.strictEqual('Endor', planetList.planets[1].name)
+    assert.strictEqual('Alderaan', planetList.planets[3].name)
+    assert.strictEqual('Endor', planetList.planets[2].name)
   })
+
+  ///SORTING BY POPULATION
 
   it('can sort by population - ascending', function(){
     planetList.sortAscending('population')
@@ -68,11 +82,23 @@ describe('PlanetList tests: ', function(){
     assert.strictEqual('Tatooine', planetList.planets[1].name)
   })
 
+  it('places unknown population last when sorted asc', function(){
+    planetList.sortAscending('population')
+    assert.strictEqual('unknown', planetList.planets[3].name)
+  })
+
   it('can sort by population - descending', function(){
     planetList.sortDescending('population')
     assert.strictEqual('Endor', planetList.planets[2].name)
     assert.strictEqual('Tatooine', planetList.planets[1].name)
   })
+
+  it('places unknown population last when sorted desc', function(){
+    planetList.sortDescending('population')
+    assert.strictEqual('unknown', planetList.planets[3].name)
+  })
+
+  ///SORTING BY DIAMETER
 
   it('can sort by diameter - ascending', function(){
     planetList.sortAscending('diameter')
@@ -85,5 +111,7 @@ describe('PlanetList tests: ', function(){
     assert.strictEqual('Tatooine', planetList.planets[0].name)
     assert.strictEqual('Endor', planetList.planets[1].name)
   })
+
+  ////need to refactor to handle 'unknown' values
 
 })
