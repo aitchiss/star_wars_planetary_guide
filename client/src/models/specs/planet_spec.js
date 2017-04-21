@@ -36,4 +36,8 @@ describe('Planet tests:', function(){
     assert.strictEqual(4500, planet.diameter)
   })
 
+  it('reflects unknown diameter value if no numeric diameter given', function(){
+    assert.strictEqual('unknown', unknownValuesPlanet.diameter)
+  })
+
 })
