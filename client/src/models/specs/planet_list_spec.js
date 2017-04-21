@@ -68,4 +68,10 @@ describe('PlanetList tests: ', function(){
     assert.strictEqual('Tatooine', planetList.planets[1].name)
   })
 
+  it('can sort by population - descending', function(){
+    planetList.sortDescending('population')
+    assert.strictEqual('Endor', planetList.planets[2].name)
+    assert.strictEqual('Tatooine', planetList.planets[1].name)
+  })
+
 })
