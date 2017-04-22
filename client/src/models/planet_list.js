@@ -54,6 +54,11 @@ PlanetList.prototype = {
           return b.rotationPeriod - a.rotationPeriod
         })
         break
+      case 'orbitalPeriod':
+        this.planets.sort(function(a, b){
+          return b.orbitalPeriod - a.orbitalPeriod
+        })
+        break
     }
   
   },

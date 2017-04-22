@@ -160,4 +160,15 @@ describe('PlanetList tests: ', function(){
    assert.strictEqual('unknown', planetList.planets[3].name)
  })
 
+ it('can sort by orbital period - descending', function(){
+   planetList.sortDescending('orbitalPeriod')
+   assert.strictEqual('Endor', planetList.planets[0].name)
+   assert.strictEqual('Tatooine', planetList.planets[1].name)
+ })
+
+ it('places unknown orbital period last when sorting descending', function(){
+   planetList.sortDescending('orbitalPeriod')
+   assert.strictEqual('unknown', planetList.planets[3].name)
+ })
+
 })
