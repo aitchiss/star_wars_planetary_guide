@@ -5,12 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha client/src/models/specs",
+    "bundle": "webpack -w",
     "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "webpack": "^2.2.0-rc.0"
   },
   "dependencies": {
     "express": "^4.15.2"
