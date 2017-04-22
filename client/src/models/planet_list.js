@@ -40,9 +40,15 @@ PlanetList.prototype = {
         })
         break
       case 'diameter':
-      this.planets.sort(function(a, b){
-        return b.diameter - a.diameter
-      })
+        this.planets.sort(function(a, b){
+          return b.diameter - a.diameter
+        })
+        break
+      case 'rotationPeriod':
+        this.planets.sort(function(a, b){
+          return b.rotationPeriod - a.rotationPeriod
+        })
+        break
     }
   
   },
