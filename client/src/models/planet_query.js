@@ -1,4 +1,5 @@
 var Planet = require('./planet.js')
+var PlanetList = require('./planet_list.js')
 
 
 var PlanetQuery = function(url){
@@ -14,8 +15,9 @@ PlanetQuery.prototype = {
       if (request.status === 200){
         var response = request.responseText
         var planetInfo = JSON.parse(response)
-        this.planets = this.convertJsonObjectsToPlanets(planetInfo.results)
-        console.log(this.planets)
+        var planets = this.convertJsonObjectsToPlanets(planetInfo.results)
+        this.allPlanetLists.push(new PlanetList(planets))
+        console.log(this.allPlanetLists)
       }
     }.bind(this)
     request.send()
