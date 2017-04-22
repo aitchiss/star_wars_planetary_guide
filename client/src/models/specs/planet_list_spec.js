@@ -146,4 +146,18 @@ describe('PlanetList tests: ', function(){
    assert.strictEqual('unknown', planetList.planets[3].name)
  })
 
+
+ ///SORTING BY ORBITAL PERIOD
+
+ it('can sort by orbital period - ascending', function(){
+   planetList.sortAscending('orbitalPeriod')
+   assert.strictEqual('Alderaan', planetList.planets[0].name)
+   assert.strictEqual('Tatooine', planetList.planets[1].name)
+ })
+
+ it('places unknown orbital period last when sorting ascending', function(){
+   planetList.sortAscending('orbitalPeriod')
+   assert.strictEqual('unknown', planetList.planets[3].name)
+ })
+
 })
