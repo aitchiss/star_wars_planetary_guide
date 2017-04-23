@@ -30,19 +30,13 @@ PlanetListView.prototype = {
     planetList.planets.forEach(function(planet){
       var planetRow = document.createElement('div')
       planetRow.classList.add('row')
-      //add name to name column
+      //add planet details to each row
       this.addPlanetName(planet.name, planetRow)
-      //add pop to pop column
       this.addPopulation(planet.population, planetRow)
-      // //add diameter to diameter column
       this.addDiameter(planet.diameter, planetRow)
-      // //add rotation period to rotation column
       this.addRotationPeriod(planet.rotationPeriod, planetRow)
-      // //add orbital period to orbital column
       this.addOrbitalPeriod(planet.orbitalPeriod, planetRow)
-      // //add terrains to terrain column
       this.addTerrains(planet.terrains, planetRow)
-      // //add films
       this.addFilms(planet.films, planetRow)
 
       table.appendChild(planetRow)
@@ -52,7 +46,6 @@ PlanetListView.prototype = {
   },
 
   addFilms: function(films, planetRow){
-    // var column = document.querySelector('#films')
     var ul = document.createElement('ul')
     films.forEach(function(film){
       var li = document.createElement('li')
@@ -63,7 +56,6 @@ PlanetListView.prototype = {
   },
 
   addTerrains: function(terrains, planetRow){
-    // var column = document.querySelector('#terrain')
     var ul = document.createElement('ul')
     terrains.forEach(function(terrain){
       var li = document.createElement('li')
@@ -74,35 +66,30 @@ PlanetListView.prototype = {
   },
 
   addOrbitalPeriod: function(orbitalPeriod, planetRow){
-    // var column = document.querySelector('#orbitalperiod')
     var pTag = document.createElement('p')
     pTag.innerText = orbitalPeriod
     planetRow.appendChild(pTag)
   },
 
   addRotationPeriod: function(rotationPeriod, planetRow){
-    // var column = document.querySelector('#rotationperiod')
     var pTag = document.createElement('p')
     pTag.innerText = rotationPeriod
     planetRow.appendChild(pTag)
   },
 
   addDiameter: function(diameter, planetRow){
-    // var column = document.querySelector('#diameter')
     var pTag = document.createElement('p')
     pTag.innerText = diameter
     planetRow.appendChild(pTag)
   },
 
   addPlanetName: function(name, planetRow){
-    // var column = document.querySelector('#name')
     var pTag = document.createElement('p')
     pTag.innerText = name
     planetRow.appendChild(pTag)
   },
 
   addPopulation: function(population, planetRow){
-    // var column = document.querySelector('#population')
     var pTag = document.createElement('p')
     pTag.innerText = population
     planetRow.appendChild(pTag)
