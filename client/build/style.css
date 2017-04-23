@@ -27,3 +27,14 @@
 .row p {
   width: 125px;
 }
+
+#pages-nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+#pages-nav p{
+  padding: 10px;
+}

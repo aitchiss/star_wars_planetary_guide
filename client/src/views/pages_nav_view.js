@@ -1,10 +1,11 @@
-var PagesNavView = function(container, noOfPages){
+var PagesNavView = function(container){
   this.container = container
-  this.pageNumbers = noOfPages
+  this.pageNumbers
 }
 
 PagesNavView.prototype = {
   renderNav: function(pageNumbers){
+    this.pageNumbers = pageNumbers
     for (var i = 1; i <= pageNumbers; i++){
       var pTag = document.createElement('p')
       pTag.innerText = i
