@@ -36,9 +36,18 @@ PlanetListView.prototype = {
       this.addDiameter(planet.diameter)
       //add rotation period to rotation column
       this.addRotationPeriod(planet.rotationPeriod)
+      //add orbital period to orbital column
+      this.addOrbitalPeriod(planet.orbitalPeriod)
     }.bind(this))
 
     
+  },
+
+  addOrbitalPeriod: function(orbitalPeriod){
+    var column = document.querySelector('#orbitalperiod')
+    var pTag = document.createElement('p')
+    pTag.innerText = orbitalPeriod
+    column.appendChild(pTag)
   },
 
   addRotationPeriod: function(rotationPeriod){
