@@ -17,9 +17,10 @@ PlanetQuery.prototype = {
         var response = request.responseText
         var planetInfo = JSON.parse(response)
         var planetsWithoutFilmTitles = this.convertJsonObjectsToPlanets(planetInfo.results)
+        this.pages = Math.ceil(planetInfo.count / 10)
         this.populateFilmNames(planetsWithoutFilmTitles, filmInfo, callbackToRender)
 
-        this.pages = Math.ceil(planetInfo.count / 10)
+        
       }
     }.bind(this)
     request.send()
@@ -37,7 +38,7 @@ PlanetQuery.prototype = {
     }.bind(this))
     this.allPlanetLists.push(planetList)
     console.log(this.allPlanetLists)
-    callbackToRender(this.allPlanetLists[0])
+    callbackToRender(this.allPlanetLists[0], this.pages)
   },
 
   convertJsonObjectsToPlanets: function(jsonPlanets){

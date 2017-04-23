@@ -1,0 +1,29 @@
+#planet-flex-grid{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.col {
+  flex: 1;
+}
+
+.flex-grid{
+  display: flex;
+  flex-direction: column;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
+.row ul{
+  list-style: none;
+  width: 125px;
+  padding: 0;
+}
+
+.row p {
+  width: 125px;
+}
