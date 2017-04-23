@@ -9,7 +9,7 @@ var PlanetQuery = function(){
 }
 
 PlanetQuery.prototype = {
-  getData: function(url, filmInfo){
+  getData: function(url, filmInfo, callbackToRender){
     var request = new XMLHttpRequest()
     request.open('GET', url)
     request.onload = function(){
@@ -17,7 +17,7 @@ PlanetQuery.prototype = {
         var response = request.responseText
         var planetInfo = JSON.parse(response)
         var planetsWithoutFilmTitles = this.convertJsonObjectsToPlanets(planetInfo.results)
-        this.populateFilmNames(planetsWithoutFilmTitles, filmInfo)
+        this.populateFilmNames(planetsWithoutFilmTitles, filmInfo, callbackToRender)
 
         this.pages = Math.ceil(planetInfo.count / 10)
       }
@@ -26,7 +26,7 @@ PlanetQuery.prototype = {
   },
 
 
-  populateFilmNames: function(planets, filmData){
+  populateFilmNames: function(planets, filmData, callbackToRender){
     var planetList = new PlanetList([])
     planets.forEach(function(planet){
       for (var i = 0; i < planet.films.length; i++){
@@ -37,6 +37,7 @@ PlanetQuery.prototype = {
     }.bind(this))
     this.allPlanetLists.push(planetList)
     console.log(this.allPlanetLists)
+    callbackToRender(this.allPlanetLists[0])
   },
 
   convertJsonObjectsToPlanets: function(jsonPlanets){
