@@ -6,8 +6,6 @@ app = function(){
   var planetQuery = new PlanetQuery()
   var filmQuery = new FilmQuery()
   
-  // planetQuery.getInitialData()
-
   
   filmQuery.getFilmData(function(films){
     planetQuery.getInitialData(films)
