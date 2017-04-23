@@ -31,9 +31,18 @@ PlanetListView.prototype = {
       this.addPlanetName(planet.name)
       //add pop to pop column
       this.addPopulation(planet.population)
+      //add diameter to diameter column
+      this.addDiameter(planet.diameter)
     }.bind(this))
 
     
+  },
+
+  addDiameter: function(diameter){
+    var column = document.querySelector('#diameter')
+    var pTag = document.createElement('p')
+    pTag.innerText = diameter
+    column.appendChild(pTag)
   },
 
   addPlanetName: function(name){
@@ -50,45 +59,7 @@ PlanetListView.prototype = {
     column.appendChild(pTag)
   },
 
-  // addPlanetData: function(planet, table){
-  //   //create a row div
-  //   var planetRow = document.createElement('div')
-  //   planetRow.classList.add('planet-row')
-
-  //   //populate the single elements, add to a row div
-  //   var singleTextElements = ['name', 'population', 'diameter', 'rotationPeriod', 'orbitalPeriod']
-  //   singleTextElements.forEach(function(element){
-  //     //create a box for the info
-  //     var dataDiv = document.createElement('div')
-  //     //add a text element
-  //     var text = document.createElement('p')
-  //     text.innerText = planet[element]
-  //     //append the text element to the box
-  //     dataDiv.appendChild(text)
-  //     //append the box to the planet row
-  //     planetRow.appendChild(dataDiv)
-  //   }.bind(this))
-
-  //   //populate the multiple elements, add to the row div
-
-  //   //attach the row div to the table div
-  //   table.appendChild(planetRow)
-  // },
-
-  // addTableHeaders: function(tableDiv){
-  //   var elements = ['name', 'population', 'diameter', 'rotation period', 'orbital period', 'terrain', 'films']
-  //   var row = document.createElement('div')
-  //   row.classList.add('headings')
-  //   elements.forEach(function(element){
-  //     var elementDiv = document.createElement('div')
-  //     elementDiv.classList.add('indivdual-heading')
-  //     var text = document.createElement('p')
-  //     text.innerText = element
-  //     elementDiv.appendChild(text)
-  //     row.appendChild(elementDiv)
-  //   }.bind(this))
-  //   tableDiv.appendChild(row)
-  // },
+  
 
 }
 
