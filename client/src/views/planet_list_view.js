@@ -40,9 +40,22 @@ PlanetListView.prototype = {
       this.addOrbitalPeriod(planet.orbitalPeriod)
       //add terrains to terrain column
       this.addTerrains(planet.terrains)
+      //add films
+      this.addFilms(planet.films)
     }.bind(this))
 
     
+  },
+
+  addFilms: function(films){
+    var column = document.querySelector('#films')
+    var ul = document.createElement('ul')
+    films.forEach(function(film){
+      var li = document.createElement('li')
+      li.innerText = film
+      ul.appendChild(li)
+    })
+    column.appendChild(ul)
   },
 
   addTerrains: function(terrains){
