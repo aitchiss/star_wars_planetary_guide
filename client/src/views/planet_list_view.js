@@ -23,12 +23,23 @@ PlanetListView.prototype = {
       column.appendChild(heading)
       table.appendChild(column)
     }.bind(this))
-    // this.addTableHeaders(table)
-    // planetList.planets.forEach(function(planet){
-    //   this.addPlanetData(planet, table)
-    // }.bind(this))
 
     this.container.appendChild(table)
+
+    planetList.planets.forEach(function(planet){
+      //add name to name column
+      
+      this.addPlanetName(planet.name)
+    }.bind(this))
+
+    
+  },
+
+  addPlanetName: function(name){
+    var column = document.querySelector('#name')
+    var pTag = document.createElement('p')
+    pTag.innerText = name
+    column.appendChild(pTag)
   },
 
   // addPlanetData: function(planet, table){
