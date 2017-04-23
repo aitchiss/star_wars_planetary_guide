@@ -14,17 +14,17 @@ PlanetListView.prototype = {
 
     var colHeaders = ['name', 'population', 'diameter', 'rotation period', 'orbital period', 'terrain', 'films']
 
+    var headingRow = document.createElement('div')
+    headingRow.classList.add('row')
+
     colHeaders.forEach(function(colHeader){
-      var column = document.createElement("div")
-      column.classList.add('col')
-      var id = colHeader.replace(/\s/g,'')
-      column.id = id
-      var heading = document.createElement('h5')
+      var heading = document.createElement('p')
       heading.innerText = colHeader
-      column.appendChild(heading)
-      table.appendChild(column)
+      headingRow.appendChild(heading)
+      
     }.bind(this))
 
+    table.appendChild(headingRow)
     this.container.appendChild(table)
 
     planetList.planets.forEach(function(planet){
