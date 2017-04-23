@@ -4,35 +4,34 @@ var PlanetListView = function(container){
 
 PlanetListView.prototype = {
   populateList: function(planetList){
-    this.createTable()
-    planetList.planets.forEach(function(planet){
-      var pTag = document.createElement('p')
-      pTag.innerText = planet.name
-      this.container.appendChild(pTag)
-    }.bind(this))
+    this.createTable(planetList)
+    
   },
 
-  createTable: function(){
-    var table = document.createElement('table')
-    table.id = 'planet-table'
-    var tableHead = this.getTableHead()
+  createTable: function(planetList){
+    var table = document.createElement('div')
+    table.id = 'planet-table-div'
+    this.addTableHeaders(table)
 
-    table.appendChild(tableHead)
+
     this.container.appendChild(table)
   },
 
-  getTableHead: function(){
-    var head = document.createElement('thead')
-    var row = document.createElement('tr')
+  addTableHeaders: function(tableDiv){
     var elements = ['name', 'population', 'diameter', 'rotation period', 'orbital period', 'terrain', 'films']
+    var row = document.createElement('div')
+    row.classList.add('headings')
     elements.forEach(function(element){
-      var th = document.createElement('th')
-      th.innerText = element
-      row.appendChild(th)
+      var elementDiv = document.createElement('div')
+      elementDiv.classList.add('indivdual-heading')
+      var text = document.createElement('p')
+      text.innerText = element
+      elementDiv.appendChild(text)
+      row.appendChild(elementDiv)
     }.bind(this))
-    head.appendChild(row)
-    return head
-  }
+    tableDiv.appendChild(row)
+  },
+
 }
 
 module.exports = PlanetListView
