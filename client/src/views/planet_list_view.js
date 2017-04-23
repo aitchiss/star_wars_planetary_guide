@@ -17,7 +17,8 @@ PlanetListView.prototype = {
     colHeaders.forEach(function(colHeader){
       var column = document.createElement("div")
       column.classList.add('col')
-      column.id = colHeader
+      var id = colHeader.replace(/\s/g,'')
+      column.id = id
       var heading = document.createElement('h5')
       heading.innerText = colHeader
       column.appendChild(heading)
@@ -33,9 +34,18 @@ PlanetListView.prototype = {
       this.addPopulation(planet.population)
       //add diameter to diameter column
       this.addDiameter(planet.diameter)
+      //add rotation period to rotation column
+      this.addRotationPeriod(planet.rotationPeriod)
     }.bind(this))
 
     
+  },
+
+  addRotationPeriod: function(rotationPeriod){
+    var column = document.querySelector('#rotationperiod')
+    var pTag = document.createElement('p')
+    pTag.innerText = rotationPeriod
+    column.appendChild(pTag)
   },
 
   addDiameter: function(diameter){
