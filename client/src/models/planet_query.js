@@ -5,14 +5,13 @@ var PlanetList = require('./planet_list.js')
 var PlanetQuery = function(){
   this.processedPlanets = []
   this.allPlanetLists = []
-  this.url = 'http://swapi.co/api/planets'
   this.pages = 1
 }
 
 PlanetQuery.prototype = {
-  getInitialData: function(filmInfo){
+  getData: function(url, filmInfo){
     var request = new XMLHttpRequest()
-    request.open('GET', this.url)
+    request.open('GET', url)
     request.onload = function(){
       if (request.status === 200){
         var response = request.responseText
@@ -25,6 +24,7 @@ PlanetQuery.prototype = {
     }.bind(this)
     request.send()
   },
+
 
   populateFilmNames: function(planets, filmData){
     var planetList = new PlanetList([])

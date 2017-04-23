@@ -8,7 +8,7 @@ app = function(){
   
   
   filmQuery.getFilmData(function(films){
-    planetQuery.getInitialData(films)
+    planetQuery.getData('http://swapi.co/api/planets', films)
   })
 }
 
