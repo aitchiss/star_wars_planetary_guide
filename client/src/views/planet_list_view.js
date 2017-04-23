@@ -28,8 +28,9 @@ PlanetListView.prototype = {
 
     planetList.planets.forEach(function(planet){
       //add name to name column
-      
       this.addPlanetName(planet.name)
+      //add pop to pop column
+      this.addPopulation(planet.population)
     }.bind(this))
 
     
@@ -39,6 +40,13 @@ PlanetListView.prototype = {
     var column = document.querySelector('#name')
     var pTag = document.createElement('p')
     pTag.innerText = name
+    column.appendChild(pTag)
+  },
+
+  addPopulation: function(population){
+    var column = document.querySelector('#population')
+    var pTag = document.createElement('p')
+    pTag.innerText = population
     column.appendChild(pTag)
   },
 
