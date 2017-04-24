@@ -19,12 +19,12 @@ PlanetList.prototype = {
           return a.diameter - b.diameter
         })
         break
-      case 'rotationPeriod':
+      case 'rotation period':
         this.planets.sort(function(a, b){
           return a.rotationPeriod - b.rotationPeriod
         })
         break
-      case 'orbitalPeriod':
+      case 'orbital period':
         this.planets.sort(function(a, b){
           return a.orbitalPeriod - b.orbitalPeriod
         })
@@ -49,12 +49,12 @@ PlanetList.prototype = {
           return b.diameter - a.diameter
         })
         break
-      case 'rotationPeriod':
+      case 'rotation period':
         this.planets.sort(function(a, b){
           return b.rotationPeriod - a.rotationPeriod
         })
         break
-      case 'orbitalPeriod':
+      case 'orbital period':
         this.planets.sort(function(a, b){
           return b.orbitalPeriod - a.orbitalPeriod
         })
