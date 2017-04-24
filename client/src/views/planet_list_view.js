@@ -1,5 +1,6 @@
 var PlanetListView = function(container){
   this.container = container
+  this.planetList 
 }
 
 PlanetListView.prototype = {
@@ -14,7 +15,34 @@ PlanetListView.prototype = {
     
   },
 
+  refreshWithSortedData: function(planetList){
+    //CLEAR THE TABLE
+    var table = document.querySelector('#planet-flex-grid')
+    var tableChildren = table.childNodes
+    console.log(tableChildren)
+    while(table.childNodes.length > 1){
+      table.removeChild(table.lastChild)
+    }
+
+    //SET UP ONLY THE ELEMENT WE WANT TO REFRESH
+    planetList.planets.forEach(function(planet){
+      var planetRow = document.createElement('div')
+      planetRow.classList.add('row')
+      //add planet details to each row
+      this.addPlanetName(planet.name, planetRow)
+      this.addPopulation(planet.population, planetRow)
+      this.addDiameter(planet.diameter, planetRow)
+      this.addRotationPeriod(planet.rotationPeriod, planetRow)
+      this.addOrbitalPeriod(planet.orbitalPeriod, planetRow)
+      this.addTerrains(planet.terrains, planetRow)
+      this.addFilms(planet.films, planetRow)
+
+      table.appendChild(planetRow)
+    }.bind(this))
+  },
+
   createTable: function(planetList){
+    this.planetList = planetList
     var table = document.createElement('div')
     table.id = 'planet-flex-grid'
 
@@ -22,10 +50,13 @@ PlanetListView.prototype = {
 
     var headingRow = document.createElement('div')
     headingRow.classList.add('row')
+    headingRow.classList.add('heading')
 
     colHeaders.forEach(function(colHeader){
       var heading = document.createElement('p')
       heading.innerText = colHeader
+      heading.classList.add('asc-false')
+      this.addSortingEventListeners(heading)
       headingRow.appendChild(heading)
       
     }.bind(this))
@@ -49,6 +80,23 @@ PlanetListView.prototype = {
     }.bind(this))
 
     
+  },
+
+  addSortingEventListeners: function(heading){
+    //ADD EVENT LISTENER FOR SORTING
+    heading.addEventListener('click', function(){
+      console.log('includes the class?', heading.classList.contains('asc-false'))
+      
+      if (heading.classList.toggle('asc-false')){
+        this.planetList.sortDescending(heading.innerText)
+        console.log(heading.classList)
+        this.refreshWithSortedData(this.planetList)
+      } else {
+        this.planetList.sortAscending(heading.innerText)
+        this.refreshWithSortedData(this.planetList)
+      }
+      
+    }.bind(this))
   },
 
   addFilms: function(films, planetRow){
