@@ -11,22 +11,50 @@ PlanetList.prototype = {
         break
       case 'population':
         this.planets.sort(function(a, b){
-          return a.population - b.population
+          if (a.population === 'unknown'){
+            return 1
+          } else if (b.population === 'unknown'){
+            return -1
+          } else {
+            return a.population - b.population
+          }
+          
         })
         break
       case 'diameter':
         this.planets.sort(function(a, b){
-          return a.diameter - b.diameter
+          if (a.diameter === 'unknown'){
+            return 1
+          } else if (b.diameter === 'unknown'){
+            return -1
+          } else {
+            return a.diameter - b.diameter
+          }
+          
         })
         break
       case 'rotation period':
         this.planets.sort(function(a, b){
-          return a.rotationPeriod - b.rotationPeriod
+          if (a.rotationPeriod === 'unknown'){
+            return 1
+          } else if (b.rotationPeriod === 'unknown'){
+            return -1
+          } else {
+            return a.rotationPeriod - b.rotationPeriod
+          }
+          
         })
         break
       case 'orbital period':
         this.planets.sort(function(a, b){
-          return a.orbitalPeriod - b.orbitalPeriod
+          if (a.orbitalPeriod === 'unknown'){
+            return 1
+          } else if (b.orbitalPeriod === 'unknown'){
+            return -1
+          } else {
+            return a.orbitalPeriod - b.orbitalPeriod
+          }
+          
         })
         break
     }
@@ -41,27 +69,54 @@ PlanetList.prototype = {
         break
       case 'population':
         this.planets.sort(function(a, b){
-          return b.population - a.population
+          if (a.population === 'unknown'){
+            return 1
+          } else if (b.population === 'unknown'){
+            return -1
+          } else {
+            return b.population - a.population
+          }
+          
         })
         break
       case 'diameter':
         this.planets.sort(function(a, b){
-          return b.diameter - a.diameter
+          if (a.diameter === 'unknown'){
+            return 1
+          } else if (b.diameter === 'unknown'){
+            return -1
+          } else {
+            return b.diameter - a.diameter
+          }
         })
         break
       case 'rotation period':
         this.planets.sort(function(a, b){
-          return b.rotationPeriod - a.rotationPeriod
+          if (a.rotationPeriod === 'unknown'){
+            return 1
+          } else if (b.rotationPeriod === 'unknown'){
+            return -1
+          } else {
+            return b.rotationPeriod - a.rotationPeriod
+          }
         })
         break
       case 'orbital period':
         this.planets.sort(function(a, b){
-          return b.orbitalPeriod - a.orbitalPeriod
+          if(a.orbitalPeriod === 'unknown'){
+            return 1
+          } else if (b.orbitalPeriod === 'unknown'){
+            return -1
+          } else {
+            return b.orbitalPeriod - a.orbitalPeriod
+          }
+          
         })
         break
     }
   
   },
+
 
   compareNamesAsc: function(a, b){
     var nameA = a.name.toLowerCase()
