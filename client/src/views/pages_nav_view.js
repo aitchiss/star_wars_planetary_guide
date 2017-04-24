@@ -27,16 +27,29 @@ PagesNavView.prototype = {
 
   },
 
-  attachListeners: function(filmQuery, planetQuery, planetListView){
-    console.log(filmQuery, planetQuery, planetListView)
+  attachListeners: function(films, planetQuery, planetListView){
+    console.log(films, planetQuery, planetListView)
+
+
+    //ATTACH LISTENER TO FIRST PAGE
     var firstPage = document.querySelector('#first-page')
     firstPage.addEventListener('click', function(){
-      filmQuery.getFilmData(function(films){
-        planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
-          planetListView.populateList(planetList)
-        })
+
+      planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
+        planetListView.populateList(planetList)
       })
+     
     })
+
+    //ATTACH LISTERNER TO LAST PAGE
+    // var lastPage = document.querySelector('#last-page')
+    // lastPage.addEventListener('click', function(){
+    //   filmQuery.getFilmData(function(films){
+    //     planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
+    //       planetListView.populateList(planetList)
+    //     })
+    //   })
+    // })
   }
 
 

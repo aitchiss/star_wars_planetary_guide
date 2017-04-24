@@ -19,7 +19,7 @@ app = function(){
     planetQuery.getData('http://swapi.co/api/planets', films, function(planetList, noOfPages){
       planetListView.populateList(planetList)
       pagesNavView.renderNav(noOfPages)
-      pagesNavView.attachListeners(filmQuery, planetQuery, planetListView)
+      pagesNavView.attachListeners(films, planetQuery, planetListView)
 
     })
   })
