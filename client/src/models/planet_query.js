@@ -11,7 +11,6 @@ var PlanetQuery = function(){
 PlanetQuery.prototype = {
 
   getData: function(url, filmInfo, callbackToRender){
-    console.log('url',url)
     this.allPlanetLists = []
     var request = new XMLHttpRequest()
     request.open('GET', url)

@@ -4,7 +4,7 @@ var PlanetListView = require('./views/planet_list_view.js')
 var PagesNavView = require('./views/pages_nav_view.js')
 
 app = function(){
-  console.log('running')
+  
   var planetQuery = new PlanetQuery()
   var filmQuery = new FilmQuery()
 

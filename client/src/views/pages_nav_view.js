@@ -13,6 +13,8 @@ PagesNavView.prototype = {
       this.pageNumbers.push(i)
     }
 
+    //CREATE EACH ELEMENT THAT SITS IN THE NAV
+
     var first = document.createElement('p')
     first.innerText = 'First'
     first.id = 'first-page'
@@ -33,9 +35,7 @@ PagesNavView.prototype = {
   },
 
   attachListeners: function(films, planetQuery, planetListView){
-    console.log(films, planetQuery, planetListView)
-
-
+    
     //ATTACH LISTENER TO FIRST PAGE
     var firstPage = document.querySelector('#first-page')
     firstPage.addEventListener('click', function(){
@@ -68,19 +68,6 @@ PagesNavView.prototype = {
       })
 
     }.bind(this))
-
-
-
-    // for (var i = 2; i < this.pageNumbers; i++){
-    //   var navElement = document.querySelector('#page' + i)
-    //   var url = 'http://swapi.co/api/planets/?page=' + i
-
-    //   navElement.addEventListener('click', function(){
-    //     planetQuery.getData(url, films, function(planetList){
-    //       planetListView.populateList(planetList)
-    //     })
-    //   })
-    // }
 
   }
 
