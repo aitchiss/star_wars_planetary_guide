@@ -41,15 +41,16 @@ PagesNavView.prototype = {
      
     })
 
-    //ATTACH LISTERNER TO LAST PAGE
-    // var lastPage = document.querySelector('#last-page')
-    // lastPage.addEventListener('click', function(){
-    //   filmQuery.getFilmData(function(films){
-    //     planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
-    //       planetListView.populateList(planetList)
-    //     })
-    //   })
-    // })
+    // ATTACH LISTENER TO LAST PAGE
+    var lastPage = document.querySelector('#last-page')
+    var lastPageNumber = this.pageNumbers
+    lastPage.addEventListener('click', function(){
+      
+      planetQuery.getData(('http://swapi.co/api/planets/?' + 'page=' + lastPageNumber), films, function(planetList){
+        planetListView.populateList(planetList)
+      })
+     
+    })
   }
 
 
