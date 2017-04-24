@@ -8,6 +8,7 @@ PlanetListView.prototype = {
     while (this.container.hasChildNodes()){
       this.container.removeChild(this.container.firstChild)
     }
+
     //RENDER NEW DATA
     this.createTable(planetList)
     

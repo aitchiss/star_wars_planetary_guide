@@ -1,12 +1,17 @@
 var PagesNavView = function(container){
   this.container = container
-  this.pageNumbers
+  this.pageNumbers = []
   this.currentPage = 1
 }
 
 PagesNavView.prototype = {
+
+
   renderNav: function(pageNumbers){
-    this.pageNumbers = pageNumbers
+    //ADD PAGE NOS TO ARRAY
+    for (var i = 1; i <= pageNumbers; i++){
+      this.pageNumbers.push(i)
+    }
 
     var first = document.createElement('p')
     first.innerText = 'First'
@@ -43,14 +48,40 @@ PagesNavView.prototype = {
 
     // ATTACH LISTENER TO LAST PAGE
     var lastPage = document.querySelector('#last-page')
-    var lastPageNumber = this.pageNumbers
+    var lastPageNumber = this.pageNumbers.length
     lastPage.addEventListener('click', function(){
       
-      planetQuery.getData(('http://swapi.co/api/planets/?' + 'page=' + lastPageNumber), films, function(planetList){
+      planetQuery.getData(('http://swapi.co/api/planets/?page=' + lastPageNumber), films, function(planetList){
         planetListView.populateList(planetList)
       })
-     
     })
+
+    //ATTACH LISTENERS FOR EACH PAGE IN BETWEEN
+    this.pageNumbers.forEach(function(pageNo){
+      var navElement = document.querySelector('#page' + pageNo)
+      var url = 'http://swapi.co/api/planets/?page=' + pageNo
+
+      navElement.addEventListener('click', function(){
+        planetQuery.getData(url, films, function(planetList){
+          planetListView.populateList(planetList)
+        })
+      })
+
+    }.bind(this))
+
+
+
+    // for (var i = 2; i < this.pageNumbers; i++){
+    //   var navElement = document.querySelector('#page' + i)
+    //   var url = 'http://swapi.co/api/planets/?page=' + i
+
+    //   navElement.addEventListener('click', function(){
+    //     planetQuery.getData(url, films, function(planetList){
+    //       planetListView.populateList(planetList)
+    //     })
+    //   })
+    // }
+
   }
 
 
