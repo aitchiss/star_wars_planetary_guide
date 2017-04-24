@@ -4,6 +4,11 @@ var PlanetListView = function(container){
 
 PlanetListView.prototype = {
   populateList: function(planetList){
+    //CLEAR ANY PREVIOUS DATA
+    while (this.container.hasChildNodes()){
+      this.container.removeChild(this.container.firstChild)
+    }
+    //RENDER NEW DATA
     this.createTable(planetList)
     
   },

@@ -24,7 +24,22 @@ PagesNavView.prototype = {
     last.innerText = 'Last'
     last.id = 'last-page'
     this.container.appendChild(last)
+
+  },
+
+  attachListeners: function(filmQuery, planetQuery, planetListView){
+    console.log(filmQuery, planetQuery, planetListView)
+    var firstPage = document.querySelector('#first-page')
+    firstPage.addEventListener('click', function(){
+      filmQuery.getFilmData(function(films){
+        planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
+          planetListView.populateList(planetList)
+        })
+      })
+    })
   }
+
+
 }
 
 module.exports = PagesNavView

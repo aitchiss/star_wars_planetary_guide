@@ -9,7 +9,9 @@ var PlanetQuery = function(){
 }
 
 PlanetQuery.prototype = {
+
   getData: function(url, filmInfo, callbackToRender){
+    this.allPlanetLists = []
     var request = new XMLHttpRequest()
     request.open('GET', url)
     request.onload = function(){
@@ -19,8 +21,6 @@ PlanetQuery.prototype = {
         var planetsWithoutFilmTitles = this.convertJsonObjectsToPlanets(planetInfo.results)
         this.pages = Math.ceil(planetInfo.count / 10)
         this.populateFilmNames(planetsWithoutFilmTitles, filmInfo, callbackToRender)
-
-        
       }
     }.bind(this)
     request.send()
