@@ -97,8 +97,9 @@ header h1{
 
 #pages-nav p, img{
   padding: 10px;
+  line-height: 10px;
 }
 
 #pages-nav img{
-  margin-top: 18px;
+  margin-top: 12px;
 }

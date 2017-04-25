@@ -52,6 +52,14 @@ PagesNavView.prototype = {
     last.id = 'last-page'
     this.container.appendChild(last)
 
+    this.highlightCurrentPage()
+
+  },
+
+  highlightCurrentPage: function(){
+    var currentPageLink = document.querySelector('#page' + this.currentPage)
+    currentPageLink.style.backgroundColor = '#F2F3F5'
+    currentPageLink.style.borderRadius = '100%'
   },
 
   attachListeners: function(films, planetQuery, planetListView){
