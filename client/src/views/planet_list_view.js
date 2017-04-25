@@ -83,9 +83,11 @@ PlanetListView.prototype = {
         planetRow.classList.add('no-contrast')
       }
 
+
       table.appendChild(planetRow)
     }.bind(this))
 
+    table.lastChild.classList.add('final-row')
     
   },
 

@@ -49,8 +49,13 @@ header h1{
   background-color: #00BFD2;
   color: white;
   text-transform: uppercase;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.final-row{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #planet-list{
