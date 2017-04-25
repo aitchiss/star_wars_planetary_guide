@@ -59,22 +59,35 @@ PagesNavView.prototype = {
     //ATTACH LISTENER TO FIRST PAGE
     var firstPage = document.querySelector('#first-page')
     firstPage.addEventListener('click', function(){
-
+      this.currentPage = 1
       planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
         planetListView.populateList(planetList)
       })
      
-    })
+    }.bind(this))
 
     // ATTACH LISTENER TO LAST PAGE
     var lastPage = document.querySelector('#last-page')
     var lastPageNumber = this.pageNumbers.length
     lastPage.addEventListener('click', function(){
-      
+      this.currentPage = this.pageNumbers.length
       planetQuery.getData(('http://swapi.co/api/planets/?page=' + lastPageNumber), films, function(planetList){
         planetListView.populateList(planetList)
       })
-    })
+    }.bind(this))
+
+    //ATTACH LISTENER TO BACK ARROW
+    var backArrow = document.querySelector('#back-arrow')
+    backArrow.addEventListener('click', function(){
+      if (this.currentPage > 1){
+        this.currentPage--
+        planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
+          planetListView.populateList(planetList)
+        })
+      }
+    }.bind(this))
+
+    //ATTACH LISTERNER TO FORWARD ARROW
 
     //ATTACH LISTENERS FOR EACH PAGE IN BETWEEN
     this.pageNumbers.forEach(function(pageNo){
@@ -82,10 +95,11 @@ PagesNavView.prototype = {
       var url = 'http://swapi.co/api/planets/?page=' + pageNo
 
       navElement.addEventListener('click', function(){
+        this.currentPage = pageNo
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
         })
-      })
+      }.bind(this))
 
     }.bind(this))
 
