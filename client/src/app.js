@@ -25,6 +25,7 @@ app = function(){
       planetListView.populateList(planetList)
       pagesNavView.renderNav(noOfPages)
       pagesNavView.attachListeners(films, planetQuery, planetListView)
+      searchView.attachListener(films, planetQuery, planetListView)
 
     })
   })
