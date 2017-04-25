@@ -19,6 +19,12 @@ SearchView.prototype = {
         //takes the first word of the search input before converting to lower case and stripping special characters. Planets with two-word names are accessed by searching for the first name only.
         var searchText = this.searchBox.value.split(' ')[0].toLowerCase().replace(/\W/g, '')
         var url = 'https://swapi.co/api/planets/?search=' + searchText
+
+        //remove the indicator that the user is on a page of the full results
+        var navNumbers = document.querySelectorAll('.nav-number')
+        navNumbers.forEach(function(num){
+          num.style.backgroundColor = '#FFFFFF'
+        })
       
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
