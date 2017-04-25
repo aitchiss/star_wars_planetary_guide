@@ -17,17 +17,14 @@ SearchView.prototype = {
   attachListener: function(films, planetQuery, planetListView){
     this.searchBox.addEventListener('keydown', function(e){
       if (e.key === 'Enter'){
-        var searchText = this.searchBox.value.split(' ')[0]
-        console.log(searchText)
-        //STRIP OUT SPECIAL CHARS AND WHITESPACE
+        //takes the first word of the search input before converting to lower case and stripping special characters. Planets with two-word names are accessed by searching for the first name only.
+        var searchText = this.searchBox.value.split(' ')[0].toLowerCase().replace(/\W/g, '')
         var url = 'https://swapi.co/api/planets/?search=' + searchText
-        console.log(url)
+      
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
         })
-        
       }
-      
     }.bind(this))
   }
 }
