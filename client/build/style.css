@@ -95,6 +95,10 @@ header h1{
 
 }
 
-#pages-nav p{
+#pages-nav p, img{
   padding: 10px;
+}
+
+#pages-nav img{
+  margin-top: 18px;
 }

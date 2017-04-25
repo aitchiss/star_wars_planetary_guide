@@ -15,10 +15,21 @@ PagesNavView.prototype = {
 
     //CREATE EACH ELEMENT THAT SITS IN THE NAV
 
+    //FIRST
+
     var first = document.createElement('p')
     first.innerText = 'First'
     first.id = 'first-page'
     this.container.appendChild(first)
+
+    //ARROW BACK
+    var backArrow = document.createElement('img')
+    backArrow.src = '/arrow_left.png'
+    backArrow.style.height = '15px'
+    backArrow.id = 'back-arrow'
+    this.container.appendChild(backArrow)
+
+    //PAGE NUMBERS
 
     for (var i = 1; i <= pageNumbers; i++){
       var pTag = document.createElement('p')
@@ -26,6 +37,15 @@ PagesNavView.prototype = {
       pTag.innerText = i
       this.container.appendChild(pTag)
     }
+
+    //ARROW FORWARD
+    var forwardArrow = document.createElement('img')
+    forwardArrow.src = '/arrow_right.png'
+    forwardArrow.style.height = '15px'
+    forwardArrow.id = 'forward-arrow'
+    this.container.appendChild(forwardArrow)
+
+    //LAST
 
     var last = document.createElement('p')
     last.innerText = 'Last'
