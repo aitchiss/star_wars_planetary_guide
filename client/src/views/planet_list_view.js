@@ -25,7 +25,7 @@ PlanetListView.prototype = {
     }
 
     //SET UP ONLY THE ELEMENT WE WANT TO REFRESH
-    planetList.planets.forEach(function(planet){
+    planetList.planets.forEach(function(planet, index){
       var planetRow = document.createElement('div')
       planetRow.classList.add('row')
       //add planet details to each row
@@ -36,6 +36,12 @@ PlanetListView.prototype = {
       this.addOrbitalPeriod(planet.orbitalPeriod, planetRow)
       this.addTerrains(planet.terrains, planetRow)
       this.addFilms(planet.films, planetRow)
+
+      if (index % 2 === 0){
+        planetRow.classList.add('contrast-color')
+      } else {
+        planetRow.classList.add('no-contrast')
+      }
 
       table.appendChild(planetRow)
     }.bind(this))
