@@ -4,6 +4,16 @@
 
 }
 
+#search-box{
+  background-image: url('/search.png') ;
+  background-repeat: no-repeat;
+  background-size: 13px 13px;
+  background-position: left;
+  padding: 5px 5px 5px 20px;
+}
+
+
+
 .col {
   flex: 1;
 }

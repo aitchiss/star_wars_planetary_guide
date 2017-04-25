@@ -2,11 +2,16 @@ var PlanetQuery = require('./models/planet_query.js')
 var FilmQuery = require('./models/film_query.js')
 var PlanetListView = require('./views/planet_list_view.js')
 var PagesNavView = require('./views/pages_nav_view.js')
+var SearchView = require('./views/search_view.js')
 
 app = function(){
   
   var planetQuery = new PlanetQuery()
   var filmQuery = new FilmQuery()
+
+  var searchSection = document.querySelector('#search-section')
+  var searchView = new SearchView(searchSection)
+  searchView.render()
 
   var planetListContainer = document.querySelector('#planet-list')
   var planetListView = new PlanetListView(planetListContainer)
