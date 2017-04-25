@@ -88,6 +88,15 @@ PagesNavView.prototype = {
     }.bind(this))
 
     //ATTACH LISTERNER TO FORWARD ARROW
+    var forwardArrow = document.querySelector('#forward-arrow')
+    forwardArrow.addEventListener('click', function(){
+      if (this.currentPage < this.pageNumbers.length){
+        this.currentPage++
+        planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
+          planetListView.populateList(planetList)
+        })
+      }
+    }.bind(this))
 
     //ATTACH LISTENERS FOR EACH PAGE IN BETWEEN
     this.pageNumbers.forEach(function(pageNo){
