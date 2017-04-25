@@ -58,9 +58,7 @@ header h1{
 
 }
 
-.col {
-  flex: 1;
-}
+
 
 .flex-grid{
   display: flex;
@@ -77,12 +75,12 @@ header h1{
 
 .row ul{
   list-style: none;
-  width: 125px;
+  width: 175px;
   padding: 0;
 }
 
 .row p {
-  width: 125px;
+  width: 175px;
 }
 
 #pages-nav{
