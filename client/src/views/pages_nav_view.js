@@ -74,7 +74,6 @@ PagesNavView.prototype = {
     var allNavNumbers = document.querySelectorAll('.nav-number')
     allNavNumbers.forEach(function(num){
       if (parseInt(num.innerText) !== this.currentPage && parseInt(num.innerText) !== this.currentPage + 1 && parseInt(num.innerText) !== this.currentPage - 1 ){
-        console.log('called')
         num.style.display = 'none'
       } else {
         num.style.display = 'block'
@@ -116,6 +115,7 @@ PagesNavView.prototype = {
     firstPage.addEventListener('click', function(){
       this.currentPage = 1
       this.highlightCurrentPage()
+      this.collapsePageNumbers()
       planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
         planetListView.populateList(planetList)
       })
