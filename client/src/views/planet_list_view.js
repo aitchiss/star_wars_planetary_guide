@@ -19,7 +19,7 @@ PlanetListView.prototype = {
     //CLEAR THE TABLE
     var table = document.querySelector('#planet-flex-grid')
     var tableChildren = table.childNodes
-    console.log(tableChildren)
+
     while(table.childNodes.length > 1){
       table.removeChild(table.lastChild)
     }
@@ -85,11 +85,9 @@ PlanetListView.prototype = {
   addSortingEventListeners: function(heading){
     //ADD EVENT LISTENER FOR SORTING
     heading.addEventListener('click', function(){
-      console.log('includes the class?', heading.classList.contains('asc-false'))
       
       if (heading.classList.toggle('asc-false')){
         this.planetList.sortDescending(heading.innerText)
-        console.log(heading.classList)
         this.refreshWithSortedData(this.planetList)
       } else {
         this.planetList.sortAscending(heading.innerText)
