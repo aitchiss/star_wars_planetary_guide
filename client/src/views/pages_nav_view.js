@@ -109,6 +109,28 @@ PagesNavView.prototype = {
   },
 
   attachListeners: function(films, planetQuery, planetListView){
+    //ATTACH LISTENER TO ELIPSES
+    var initialElipses = document.querySelectorAll('.elipses')[0]
+
+    initialElipses.addEventListener('click', function(){
+      this.currentPage = this.currentPage - 2
+      this.highlightCurrentPage()
+      this.collapsePageNumbers()
+      planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
+        planetListView.populateList(planetList)
+      })
+    }.bind(this))
+
+    var lastElipses = document.querySelectorAll('.elipses')[1]
+
+    lastElipses.addEventListener('click', function(){
+      this.currentPage = this.currentPage + 2
+      this.highlightCurrentPage()
+      this.collapsePageNumbers()
+      planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
+        planetListView.populateList(planetList)
+      })
+    }.bind(this))
     
     //ATTACH LISTENER TO FIRST PAGE
     var firstPage = document.querySelector('#first-page')
