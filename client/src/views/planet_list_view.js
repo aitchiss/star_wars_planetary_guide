@@ -5,6 +5,7 @@ var PlanetListView = function(container){
 
 PlanetListView.prototype = {
   populateList: function(planetList){
+    console.log('popultin..')
     //CLEAR ANY PREVIOUS DATA
     while (this.container.hasChildNodes()){
       this.container.removeChild(this.container.firstChild)
@@ -64,7 +65,7 @@ PlanetListView.prototype = {
     table.appendChild(headingRow)
     this.container.appendChild(table)
 
-    planetList.planets.forEach(function(planet){
+    planetList.planets.forEach(function(planet, index){
       var planetRow = document.createElement('div')
       planetRow.classList.add('row')
       //add planet details to each row
@@ -75,6 +76,12 @@ PlanetListView.prototype = {
       this.addOrbitalPeriod(planet.orbitalPeriod, planetRow)
       this.addTerrains(planet.terrains, planetRow)
       this.addFilms(planet.films, planetRow)
+
+      if (index % 2 === 0){
+        planetRow.classList.add('contrast-color')
+      } else {
+        planetRow.classList.add('no-contrast')
+      }
 
       table.appendChild(planetRow)
     }.bind(this))
