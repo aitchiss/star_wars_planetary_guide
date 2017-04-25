@@ -5,7 +5,6 @@ var PlanetListView = function(container){
 
 PlanetListView.prototype = {
   populateList: function(planetList){
-    console.log('popultin..')
     //CLEAR ANY PREVIOUS DATA
     while (this.container.hasChildNodes()){
       this.container.removeChild(this.container.firstChild)
@@ -94,12 +93,11 @@ PlanetListView.prototype = {
   addSortingEventListeners: function(heading){
     //ADD EVENT LISTENER FOR SORTING
     heading.addEventListener('click', function(){
-      
       if (heading.classList.toggle('asc-false')){
-        this.planetList.sortDescending(heading.innerText)
+        this.planetList.sortDescending(heading.innerText.toLowerCase())
         this.refreshWithSortedData(this.planetList)
       } else {
-        this.planetList.sortAscending(heading.innerText)
+        this.planetList.sortAscending(heading.innerText.toLowerCase())
         this.refreshWithSortedData(this.planetList)
       }
       
