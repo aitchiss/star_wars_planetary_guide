@@ -9,7 +9,6 @@ SearchView.prototype = {
     this.searchBox.id = 'search-box'
     this.searchBox.placeholder = 'Search'
     this.searchBox.setAttribute('type', 'text')
-    
   
     this.container.appendChild(this.searchBox)
   },
