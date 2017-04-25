@@ -29,6 +29,12 @@ PagesNavView.prototype = {
     backArrow.id = 'back-arrow'
     this.container.appendChild(backArrow)
 
+    //ELIPSES
+    var initialElipses = document.createElement('p')
+    initialElipses.innerText = '...'
+    initialElipses.classList.add('elipses')
+    this.container.appendChild(initialElipses)
+
     //PAGE NUMBERS
 
     for (var i = 1; i <= pageNumbers; i++){
@@ -38,6 +44,12 @@ PagesNavView.prototype = {
       pTag.classList.add('nav-number')
       this.container.appendChild(pTag)
     }
+
+    //ELIPSES
+    var lastElipses = document.createElement('p')
+    lastElipses.innerText = '...'
+    lastElipses.classList.add('elipses')
+    this.container.appendChild(lastElipses)
 
     //ARROW FORWARD
     var forwardArrow = document.createElement('img')
@@ -54,7 +66,35 @@ PagesNavView.prototype = {
     this.container.appendChild(last)
 
     this.highlightCurrentPage()
+    this.collapsePageNumbers()
 
+  },
+
+  collapsePageNumbers(){
+    var allNavNumbers = document.querySelectorAll('.nav-number')
+    allNavNumbers.forEach(function(num){
+      if (parseInt(num.innerText) !== this.currentPage && parseInt(num.innerText) !== this.currentPage + 1 && parseInt(num.innerText) !== this.currentPage - 1 ){
+        console.log('called')
+        num.style.display = 'none'
+      } else {
+        num.style.display = 'block'
+      }
+    }.bind(this))
+
+    var initialElipses = document.querySelectorAll('.elipses')[0]
+    var lastElipses = document.querySelectorAll('.elipses')[1]
+
+    if(this.currentPage <= 2){
+      initialElipses.style.display = 'none'
+    } else {
+      initialElipses.style.display = 'block'
+    }
+
+    if (this.currentPage >= (this.pageNumbers.length - 2)){
+      lastElipses.style.display = 'none'
+    } else {
+      lastElipses.style.display = 'block'
+    }
   },
 
   highlightCurrentPage: function(){
@@ -88,6 +128,7 @@ PagesNavView.prototype = {
     lastPage.addEventListener('click', function(){
       this.currentPage = this.pageNumbers.length
       this.highlightCurrentPage()
+      this.collapsePageNumbers()
       planetQuery.getData(('http://swapi.co/api/planets/?page=' + lastPageNumber), films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -99,6 +140,7 @@ PagesNavView.prototype = {
       if (this.currentPage > 1){
         this.currentPage--
         this.highlightCurrentPage()
+        this.collapsePageNumbers()
         planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
           planetListView.populateList(planetList)
         })
@@ -111,6 +153,7 @@ PagesNavView.prototype = {
       if (this.currentPage < this.pageNumbers.length){
         this.currentPage++
         this.highlightCurrentPage()
+        this.collapsePageNumbers()
         planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
           planetListView.populateList(planetList)
         })
@@ -125,6 +168,7 @@ PagesNavView.prototype = {
       navElement.addEventListener('click', function(){
         this.currentPage = pageNo
         this.highlightCurrentPage()
+        this.collapsePageNumbers()
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
         })
