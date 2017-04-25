@@ -52,6 +52,7 @@ PlanetListView.prototype = {
     var table = document.createElement('div')
     table.id = 'planet-flex-grid'
 
+    //CREATE THE HEADERS
     var colHeaders = ['name', 'population', 'diameter', 'rotation period', 'orbital period', 'terrain', 'films']
 
     var headingRow = document.createElement('div')
@@ -62,8 +63,18 @@ PlanetListView.prototype = {
       var heading = document.createElement('p')
       heading.innerText = colHeader
       heading.classList.add('asc-false')
-      this.addSortingEventListeners(heading)
-      headingRow.appendChild(heading)
+
+      if(colHeader !== 'terrain' && colHeader !== 'films'){
+
+        this.addSortingEventListeners(heading)
+        headingRow.appendChild(heading)
+        
+      } else {
+        headingRow.appendChild(heading)
+
+      }
+      
+      
       
     }.bind(this))
 
