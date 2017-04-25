@@ -1,16 +1,16 @@
 body{
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 header{
   background-color: #071218;
   color: white;
   text-align: center;
-  height: 120px;
+  height: 160px;
 }
 
 header h1{
-  padding: 30px;
+  padding-top: 20px
 }
 
 
