@@ -17,7 +17,8 @@ SearchView.prototype = {
   attachListener: function(films, planetQuery, planetListView){
     this.searchBox.addEventListener('keydown', function(e){
       if (e.key === 'Enter'){
-        var searchText = this.searchBox.value
+        var searchText = this.searchBox.value.split(' ')[0]
+        console.log(searchText)
         //STRIP OUT SPECIAL CHARS AND WHITESPACE
         var url = 'https://swapi.co/api/planets/?search=' + searchText
         console.log(url)
