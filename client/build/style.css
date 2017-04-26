@@ -26,7 +26,7 @@ header p {
 }
 
 .contrast-color{
-  background-color: #E3EAF4;
+  background-color: #F3F7FA;
 }
 
 .no-contrast{
@@ -57,6 +57,7 @@ header p {
   flex-direction: row;
   width: 100%;
   justify-content: center;
+  margin-bottom: 15px;
 }
 
 
@@ -69,7 +70,7 @@ header p {
   flex-direction: column;
   width: 50%;
   padding: 5px 10px 5px 10px;
-  border-bottom: 1px solid black;
+  background-color: #E3EAF4;
 }
 
 .mobile-header p {
@@ -150,15 +151,16 @@ header p {
 }
 
 
-@media (min-width: 750px){
+/*iPad portrait*/
+@media only screen and (min-device-width: 750px){
   #planet-flex-grid{
     font-size: 1.1em;
   }
 }
 
 
-/*for iPad landscape orientation and larger*/
-@media (min-width: 1000px){
+/*iPad landscape orientation and larger*/
+@media only screen and (min-device-width: 1000px){
 
   body{
     font-size: 0.9em;
@@ -173,6 +175,15 @@ header p {
     height: auto;
     width: 175px;
   }
+
+  .contrast-color{
+    background-color: #E3EAF4;
+  }
+
+  .no-contrast{
+    background-color: #F3F7FA;
+  }
+
 
   #search-box{
     width: 200px;
@@ -203,7 +214,9 @@ header p {
     border-top-right-radius: 10px;
   }
 
-
+  .header-and-data{
+    margin-bottom: 0;
+  }
 
   .alt-heading{
     display: none;
