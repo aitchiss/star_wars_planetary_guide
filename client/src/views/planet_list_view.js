@@ -150,7 +150,7 @@ PlanetListView.prototype = {
       table.appendChild(headerAndDataDiv)
     }.bind(this))
 
-    table.lastChild.classList.add('final-row')
+    table.lastChild.lastChild.classList.add('final-row')
     
   },
 
