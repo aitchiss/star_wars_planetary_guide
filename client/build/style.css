@@ -138,8 +138,6 @@ header p {
   display: flex;
   flex-direction: row;
   justify-content: center;
-
-
 }
 
 #pages-nav p, img{
@@ -148,7 +146,7 @@ header p {
 }
 
 #pages-nav img{
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
 
@@ -233,6 +231,9 @@ header p {
 
   #pages-nav{
     justify-content: flex-end;
+  }
 
+  #pages-nav img{
+    margin-top: 12px;
   }
 }
