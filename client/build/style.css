@@ -57,6 +57,10 @@ header h1{
   
 }
 
+.heading p{
+  display: none;
+}
+
 
 .final-row{
   border-bottom-left-radius: 10px;
@@ -133,5 +137,9 @@ header h1{
   #search-section{
     background-color: #E3EAF4;
     height: 50px;
+  }
+
+  .heading p{
+    display: flex;
   }
 }
