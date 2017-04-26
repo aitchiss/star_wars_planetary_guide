@@ -75,6 +75,7 @@ header p {
 
 .mobile-header p {
   height: 20px;
+  text-transform: uppercase;
 }
 
 
