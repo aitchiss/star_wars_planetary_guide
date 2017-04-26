@@ -48,6 +48,28 @@ header h1{
   height: 70px;
 }
 
+.header-and-data{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#films-mobile-heading, #terrain-mobile-heading{
+  height: 170px;
+}
+
+.mobile-header{
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 5px 10px 5px 10px;
+}
+
+.mobile-header p {
+  height: 20px;
+}
+
+
 .heading{
   display: none;
 }
@@ -72,6 +94,7 @@ header h1{
 }
 
 
+
 .final-row{
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -93,16 +116,19 @@ header h1{
   display: flex;
   flex-direction: column;
   padding: 5px 10px 5px 10px;
+  width: 100%;
 }
 
 .row ul{
   list-style: none;
   width: 175px;
+  height: 170px;
   padding: 0;
 }
 
 .row p {
   width: 175px;
+  height: 20px;
 }
 
 #pages-nav{
@@ -153,7 +179,13 @@ header h1{
     border-top-right-radius: 10px;
   }
 
+
+
   .alt-heading{
+    display: none;
+  }
+
+  .mobile-heading{
     display: none;
   }
 }
