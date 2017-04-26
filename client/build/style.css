@@ -18,7 +18,7 @@ header h1{
 #planet-flex-grid{
   display: flex;
   flex-direction: column;
-
+  font-size: 1.7em;
 }
 
 .contrast-color{
@@ -52,16 +52,18 @@ header h1{
   display: flex;
   flex-direction: row;
   width: 100%;
+  justify-content: center;
 }
 
+
 #films-mobile-heading, #terrain-mobile-heading{
-  height: 170px;
+  height: 180px;
 }
 
 .mobile-header{
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 50%;
   padding: 5px 10px 5px 10px;
   border-bottom: 1px solid black;
 }
@@ -79,6 +81,7 @@ header h1{
   display: none;
 }
 
+/*this is the mobile heading "planets" */
 .alt-heading{
   background-color: #00BFD2;
   color: white;
@@ -86,15 +89,9 @@ header h1{
   text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  height: 65px;
-  font-size: 1.2em;
+  height: 100px;
+  font-size: 1.1em;
 }
-
-.alt-heading p{
-  padding: 5px;
-}
-
-
 
 .final-row{
   border-bottom-left-radius: 10px;
@@ -102,11 +99,9 @@ header h1{
 }
 
 #planet-list{
-  margin: 10px;
+  margin: 30px;
 
 }
-
-
 
 .flex-grid{
   display: flex;
@@ -122,7 +117,7 @@ header h1{
 
 .row ul{
   list-style: none;
-  width: 175px;
+  
   height: 170px;
   padding: 0;
 }
@@ -132,10 +127,12 @@ header h1{
   height: 20px;
 }
 
+/*navigation section*/
 #pages-nav{
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
+
 
 }
 
@@ -147,6 +144,8 @@ header h1{
 #pages-nav img{
   margin-top: 12px;
 }
+
+
 
 /*for iPad landscape orientation and larger*/
 @media (min-width: 1000px){
@@ -162,6 +161,7 @@ header h1{
 
   .row ul{
     height: auto;
+    width: 175px;
   }
 
   #search-box{
@@ -171,6 +171,14 @@ header h1{
 
   #search-section{
     height: 50px;
+  }
+
+  #planet-flex-grid{
+    font-size: 0.9em;
+  }
+
+  #planet-list{
+    margin: 10px;
   }
 
   .heading p{
@@ -197,5 +205,10 @@ header h1{
 
   .mobile-header{
     display: none;
+  }
+
+  #pages-nav{
+    justify-content: flex-end;
+
   }
 }
