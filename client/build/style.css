@@ -150,6 +150,12 @@ header p {
 }
 
 
+@media (min-width: 750px){
+  #planet-flex-grid{
+    font-size: 1.1em;
+  }
+}
+
 
 /*for iPad landscape orientation and larger*/
 @media (min-width: 1000px){
