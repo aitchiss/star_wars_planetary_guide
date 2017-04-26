@@ -139,6 +139,11 @@ header p {
   justify-content: center;
 }
 
+#pages-nav p:hover{
+  color: #FF0082;
+}
+
+
 #pages-nav p, img{
   padding: 10px;
   line-height: 10px;
