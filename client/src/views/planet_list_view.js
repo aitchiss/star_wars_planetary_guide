@@ -66,7 +66,7 @@ PlanetListView.prototype = {
       heading.classList.add('asc-false')
 
       if(colHeader !== 'terrain' && colHeader !== 'films'){
-
+        heading.classList.add('sortable')
         this.addSortingEventListeners(heading)
         headingRow.appendChild(heading)
         

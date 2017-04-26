@@ -212,6 +212,10 @@ header p {
     border-top-right-radius: 10px;
   }
 
+  .sortable:hover{
+    color: #FF0082;
+  }
+
   .header-and-data{
     margin-bottom: 0;
   }
