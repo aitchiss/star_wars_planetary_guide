@@ -78,8 +78,22 @@ PlanetListView.prototype = {
       
     }.bind(this))
 
+    //add alternative heading for mobile layout
+    var altHeading = document.createElement('div')
+    altHeading.classList.add('alt-heading')
+    altHeadingText = document.createElement('p')
+    altHeadingText.innerText = 'PLANETS'
+    altHeading.appendChild(altHeadingText)
+    table.appendChild(altHeading)
+
+    //append the normal heading and add everything to table
+
     table.appendChild(headingRow)
     this.container.appendChild(table)
+
+
+
+    //add planet info
 
     planetList.planets.forEach(function(planet, index){
       var planetRow = document.createElement('div')

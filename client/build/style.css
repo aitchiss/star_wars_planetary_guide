@@ -49,16 +49,26 @@ header h1{
 }
 
 .heading{
-  background-color: #00BFD2;
-  color: white;
-  text-transform: uppercase;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  
+  display: none;
 }
 
 .heading p{
   display: none;
+}
+
+.alt-heading{
+  background-color: #00BFD2;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 50px;
+  font-size: 1.2em;
+}
+
+.alt-heading p{
+  padding: 5px;
 }
 
 
@@ -113,7 +123,7 @@ header h1{
   margin-top: 12px;
 }
 
-
+/*for iPad landscape orientation and larger*/
 @media (min-width: 1000px){
   .row{
     flex-direction: row;
@@ -130,5 +140,18 @@ header h1{
 
   .heading p{
     display: flex;
+  }
+
+  .heading{
+    background-color: #00BFD2;
+    color: white;
+    text-transform: uppercase;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+  }
+
+  .alt-heading{
+    display: none;
   }
 }
