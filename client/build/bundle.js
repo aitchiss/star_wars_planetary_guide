@@ -418,15 +418,26 @@ var PlanetListView = function(container, sortableColumnHeaders, unsortableColumn
 
 PlanetListView.prototype = {
     //CALLED BY THE PLANETQUERY ONCE DATA RECEIVED FROM API
-  populateList: function(planetList){
+  populateList: function(planetList, planetQuery, films){
     //saves the planet list
     this.planetList = planetList
     //clears any previous data
     while (this.container.hasChildNodes()){
       this.container.removeChild(this.container.firstChild)
     }
-    //renders new data
-    this.createTable()
+
+    if (this.planetList.planets.length === 0){
+      //display error message if no data found for search, and after 3 seconds reload the page
+      var nothingFound = 'Sorry, no planets matched your search'
+      this.createPTagAndAppend(nothingFound, this.container, 'empty-search-result')
+      setTimeout(function(){ 
+        location.reload()
+      }, 3000)
+    } else {
+      //renders new data
+      this.createTable()
+    }
+    
   },
 
   //CREATES THE WHOLE TABLE FROM THE PLANETLIST
@@ -634,6 +645,7 @@ SearchView.prototype = {
         //remove the indicator that the user is on a page of the full results
         pagesNavView.clearHighlighting()
       
+        //sends the request to the API to find any planet matching the search term
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
         })
@@ -850,7 +862,7 @@ app = function(){
   //RETRIEVES FILM NAMES FROM API, BEFORE RETRIEVING PLANET DETAILS AND POPULATING THE PAGE
   filmQuery.getFilmData(function(films){
     planetQuery.getData('http://swapi.co/api/planets', films, function(planetList, noOfPages){
-      planetListView.populateList(planetList)
+      planetListView.populateList(planetList, planetQuery, films)
       pagesNavView.renderNav(noOfPages)
       pagesNavView.attachListeners(films, planetQuery, planetListView)
       searchView.attachListener(films, planetQuery, planetListView, pagesNavView)

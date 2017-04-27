@@ -7,15 +7,26 @@ var PlanetListView = function(container, sortableColumnHeaders, unsortableColumn
 
 PlanetListView.prototype = {
     //CALLED BY THE PLANETQUERY ONCE DATA RECEIVED FROM API
-  populateList: function(planetList){
+  populateList: function(planetList, planetQuery, films){
     //saves the planet list
     this.planetList = planetList
     //clears any previous data
     while (this.container.hasChildNodes()){
       this.container.removeChild(this.container.firstChild)
     }
-    //renders new data
-    this.createTable()
+
+    if (this.planetList.planets.length === 0){
+      //display error message if no data found for search, and after 3 seconds reload the page
+      var nothingFound = 'Sorry, no planets matched your search'
+      this.createPTagAndAppend(nothingFound, this.container, 'empty-search-result')
+      setTimeout(function(){ 
+        location.reload()
+      }, 3000)
+    } else {
+      //renders new data
+      this.createTable()
+    }
+    
   },
 
   //CREATES THE WHOLE TABLE FROM THE PLANETLIST

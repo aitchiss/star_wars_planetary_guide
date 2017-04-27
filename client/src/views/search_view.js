@@ -23,6 +23,7 @@ SearchView.prototype = {
         //remove the indicator that the user is on a page of the full results
         pagesNavView.clearHighlighting()
       
+        //sends the request to the API to find any planet matching the search term
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
         })
