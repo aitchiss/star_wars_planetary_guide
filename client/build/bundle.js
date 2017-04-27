@@ -183,6 +183,19 @@ var PagesNavView = function(container){
 
 PagesNavView.prototype = {
 
+  createNavItemWithID: function(text, id){
+    var element = document.createElement('p')
+    element.innerText = text
+    element.id = id
+    return element
+  },
+
+  createNavItemWithClass: function(text, classDesc){
+    var element = document.createElement('p')
+    element.innerText = text
+    element.classList.add(classDesc)
+    return element
+  },
 
   renderNav: function(pageNumbers){
     //ADD PAGE NOS TO ARRAY
@@ -193,10 +206,7 @@ PagesNavView.prototype = {
     //CREATE EACH ELEMENT THAT SITS IN THE NAV
 
     //FIRST
-
-    var first = document.createElement('p')
-    first.innerText = 'First'
-    first.id = 'first-page'
+    var first = this.createNavItemWithID('First', 'first-page')
     this.container.appendChild(first)
 
     //ARROW BACK
@@ -207,25 +217,19 @@ PagesNavView.prototype = {
     this.container.appendChild(backArrow)
 
     //ELIPSES
-    var initialElipses = document.createElement('p')
-    initialElipses.innerText = '...'
-    initialElipses.classList.add('elipses')
-    this.container.appendChild(initialElipses)
+    var firstElipses = this.createNavItemWithClass('...', 'elipses')
+    this.container.appendChild(firstElipses)
 
     //PAGE NUMBERS
 
     for (var i = 1; i <= pageNumbers; i++){
-      var pTag = document.createElement('p')
-      pTag.id = 'page' + i
-      pTag.innerText = i
-      pTag.classList.add('nav-number')
-      this.container.appendChild(pTag)
+      var page = this.createNavItemWithID(i, 'page' + i )
+      page.classList.add('nav-number')
+      this.container.appendChild(page)
     }
 
     //ELIPSES
-    var lastElipses = document.createElement('p')
-    lastElipses.innerText = '...'
-    lastElipses.classList.add('elipses')
+    var lastElipses = this.createNavItemWithClass('...', 'elipses')
     this.container.appendChild(lastElipses)
 
     //ARROW FORWARD
@@ -236,10 +240,7 @@ PagesNavView.prototype = {
     this.container.appendChild(forwardArrow)
 
     //LAST
-
-    var last = document.createElement('p')
-    last.innerText = 'Last'
-    last.id = 'last-page'
+    var last = this.createNavItemWithID('Last', 'last-page')
     this.container.appendChild(last)
 
     this.highlightCurrentPage()
