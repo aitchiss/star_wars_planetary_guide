@@ -473,20 +473,25 @@ PlanetListView.prototype = {
     var table = document.createElement('div')
     table.id = 'planet-flex-grid'
 
-    //creates the standard (larger screen size) headers first
+    //creates the standard (larger screen size) header row first, and also the alternative heading for mobile layour
     var headingRow = this.createStandardHeadingRow()
-    //add alternative heading for mobile layout
     var altHeading = this.createAlternativeHeadingRow()
     
-    //appends both headings and add the table to the overall page section
+    //appends both headings and adds the table to the overall page section
     table.appendChild(headingRow)
     table.appendChild(altHeading)
     this.container.appendChild(table)
 
+    //adds all of the data cells to the table
+    this.addPlanetDataCellsToTable(table)
+    
+    //gives the last row of the table a class to allow it to be styled differently
+    table.lastChild.lastChild.classList.add('final-row')
+    
+  },
 
-    //ADDS DATA TO THE OVERALL TABLE
-
-    planetList.planets.forEach(function(planet, index){
+  addPlanetDataCellsToTable: function(table){
+    this.planetList.planets.forEach(function(planet, index){
       //create the div that holds the mobile header and the data row
       //(creating in a div together to allow for a side-by-side flexbox styling on mobile views)
       var headerAndDataDiv = document.createElement('div')
@@ -502,9 +507,6 @@ PlanetListView.prototype = {
       headerAndDataDiv.appendChild(planetRow)
       table.appendChild(headerAndDataDiv)
     }.bind(this))
-
-    table.lastChild.lastChild.classList.add('final-row')
-    
   },
 
   //CREATES THE DATA ROWS FOR EACH PLANET
@@ -530,17 +532,18 @@ PlanetListView.prototype = {
     return planetRow
   },
 
+  //ADDs EVENT LISTENERS FOR SORTING
   addSortingEventListeners: function(heading){
-    //ADD EVENT LISTENER FOR SORTING
     heading.addEventListener('click', function(){
+
       if (heading.classList.toggle('asc-false')){
         this.planetList.sortDescending(heading.innerText.toLowerCase())
         this.refreshWithSortedData(this.planetList)
       } else {
         this.planetList.sortAscending(heading.innerText.toLowerCase())
         this.refreshWithSortedData(this.planetList)
-      }
-      
+      } 
+
     }.bind(this))
   },
 
