@@ -260,8 +260,6 @@ PagesNavView.prototype = {
         num.style.display = 'block'
       }
     }.bind(this))
-
-
     
   },
 
@@ -301,9 +299,8 @@ PagesNavView.prototype = {
 
     initialElipses.addEventListener('click', function(){
       this.currentPage = this.currentPage - 2
-      this.highlightCurrentPage()
-      this.collapsePageNumbers()
-      this.collapseElipses()
+      this.reconfigureNavDisplay()
+      
       planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -313,9 +310,8 @@ PagesNavView.prototype = {
 
     lastElipses.addEventListener('click', function(){
       this.currentPage = this.currentPage + 2
-      this.highlightCurrentPage()
-      this.collapsePageNumbers()
-      this.collapseElipses()
+      this.reconfigureNavDisplay()
+
       planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -325,9 +321,8 @@ PagesNavView.prototype = {
     var firstPage = document.querySelector('#first-page')
     firstPage.addEventListener('click', function(){
       this.currentPage = 1
-      this.highlightCurrentPage()
-      this.collapsePageNumbers()
-      this.collapseElipses()
+      this.reconfigureNavDisplay()
+     
       planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -339,9 +334,8 @@ PagesNavView.prototype = {
     var lastPageNumber = this.pageNumbers.length
     lastPage.addEventListener('click', function(){
       this.currentPage = this.pageNumbers.length
-      this.highlightCurrentPage()
-      this.collapsePageNumbers()
-      this.collapseElipses()
+      this.reconfigureNavDisplay()
+      
       planetQuery.getData(('http://swapi.co/api/planets/?page=' + lastPageNumber), films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -352,9 +346,8 @@ PagesNavView.prototype = {
     backArrow.addEventListener('click', function(){
       if (this.currentPage > 1){
         this.currentPage--
-        this.highlightCurrentPage()
-        this.collapsePageNumbers()
-        this.collapseElipses()
+        this.reconfigureNavDisplay()
+       
         planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
           planetListView.populateList(planetList)
         })
@@ -366,9 +359,8 @@ PagesNavView.prototype = {
     forwardArrow.addEventListener('click', function(){
       if (this.currentPage < this.pageNumbers.length){
         this.currentPage++
-        this.highlightCurrentPage()
-        this.collapsePageNumbers()
-        this.collapseElipses()
+        this.reconfigureNavDisplay()
+        
         planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
           planetListView.populateList(planetList)
         })
@@ -382,9 +374,8 @@ PagesNavView.prototype = {
 
       navElement.addEventListener('click', function(){
         this.currentPage = pageNo
-        this.highlightCurrentPage()
-        this.collapsePageNumbers()
-        this.collapseElipses()
+        this.reconfigureNavDisplay()
+       
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
         })
@@ -392,6 +383,13 @@ PagesNavView.prototype = {
 
     }.bind(this))
 
+  },
+
+  //CHECKS HIGHLIGHTING AND APPEARANCE OF NAV ITEMS AFTER A CHANGE TO CURRENT PAGE
+  reconfigureNavDisplay: function(){
+    this.highlightCurrentPage()
+    this.collapsePageNumbers()
+    this.collapseElipses()
   }
 
 
