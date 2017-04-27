@@ -245,11 +245,14 @@ PagesNavView.prototype = {
 
     this.highlightCurrentPage()
     this.collapsePageNumbers()
+    this.collapseElipses()
 
   },
 
   collapsePageNumbers(){
     var allNavNumbers = document.querySelectorAll('.nav-number')
+
+    //checks if a page number is the next or previous page from the current one. If it isn't, it hides it from view.
     allNavNumbers.forEach(function(num){
       if (parseInt(num.innerText) !== this.currentPage && parseInt(num.innerText) !== this.currentPage + 1 && parseInt(num.innerText) !== this.currentPage - 1 ){
         num.style.display = 'none'
@@ -258,6 +261,12 @@ PagesNavView.prototype = {
       }
     }.bind(this))
 
+
+    
+  },
+
+  collapseElipses: function(){
+    //checks whether the elipses should be displayed, based on the current page number
     var initialElipses = document.querySelectorAll('.elipses')[0]
     var lastElipses = document.querySelectorAll('.elipses')[1]
 
@@ -267,7 +276,7 @@ PagesNavView.prototype = {
       initialElipses.style.display = 'block'
     }
 
-    if (this.currentPage >= (this.pageNumbers.length - 2)){
+    if (this.currentPage > (this.pageNumbers.length - 2)){
       lastElipses.style.display = 'none'
     } else {
       lastElipses.style.display = 'block'
@@ -294,6 +303,7 @@ PagesNavView.prototype = {
       this.currentPage = this.currentPage - 2
       this.highlightCurrentPage()
       this.collapsePageNumbers()
+      this.collapseElipses()
       planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -305,6 +315,7 @@ PagesNavView.prototype = {
       this.currentPage = this.currentPage + 2
       this.highlightCurrentPage()
       this.collapsePageNumbers()
+      this.collapseElipses()
       planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -316,6 +327,7 @@ PagesNavView.prototype = {
       this.currentPage = 1
       this.highlightCurrentPage()
       this.collapsePageNumbers()
+      this.collapseElipses()
       planetQuery.getData('http://swapi.co/api/planets', films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -329,6 +341,7 @@ PagesNavView.prototype = {
       this.currentPage = this.pageNumbers.length
       this.highlightCurrentPage()
       this.collapsePageNumbers()
+      this.collapseElipses()
       planetQuery.getData(('http://swapi.co/api/planets/?page=' + lastPageNumber), films, function(planetList){
         planetListView.populateList(planetList)
       })
@@ -341,6 +354,7 @@ PagesNavView.prototype = {
         this.currentPage--
         this.highlightCurrentPage()
         this.collapsePageNumbers()
+        this.collapseElipses()
         planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
           planetListView.populateList(planetList)
         })
@@ -354,6 +368,7 @@ PagesNavView.prototype = {
         this.currentPage++
         this.highlightCurrentPage()
         this.collapsePageNumbers()
+        this.collapseElipses()
         planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.currentPage), films, function(planetList){
           planetListView.populateList(planetList)
         })
@@ -369,6 +384,7 @@ PagesNavView.prototype = {
         this.currentPage = pageNo
         this.highlightCurrentPage()
         this.collapsePageNumbers()
+        this.collapseElipses()
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
         })
