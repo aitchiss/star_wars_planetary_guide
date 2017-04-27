@@ -113,7 +113,6 @@ var PlanetList = __webpack_require__(6)
 
 
 var PlanetQuery = function(){
-  this.processedPlanets = []
   this.planetList
   this.pages = 1
 }
@@ -123,6 +122,7 @@ PlanetQuery.prototype = {
   getData: function(url, filmInfo, callbackToRender){
     var request = new XMLHttpRequest()
     request.open('GET', url)
+
     request.onload = function(){
       if (request.status === 200){
         var response = request.responseText
@@ -138,7 +138,7 @@ PlanetQuery.prototype = {
     request.send()
   },
 
-
+  //USES THE FILM DATA RETRIEVED BY FILMQUERY TO COMPLETE MISSING PLANET INFO
   populateFilmNames: function(planets, filmData, callbackToRender){
     var newPlanetList = new PlanetList([])
     planets.forEach(function(planet){
@@ -149,9 +149,12 @@ PlanetQuery.prototype = {
       newPlanetList.planets.push(planet)
     }.bind(this))
     this.planetList = newPlanetList
+
+    //passes the planetList and the number of pages to the PlanetListView, so it may create the UI
     callbackToRender(this.planetList, this.pages)
   },
 
+  //CONVERTS A JSON API RESPONSE TO PLANET OBJECTS
   convertJsonObjectsToPlanets: function(jsonPlanets){
     var planets = []
     jsonPlanets.forEach(function(planetInfo){
