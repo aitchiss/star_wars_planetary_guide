@@ -62,9 +62,7 @@ PlanetListView.prototype = {
   createAlternativeHeadingRow: function(){
     var altHeading = document.createElement('div')
     altHeading.classList.add('alt-heading')
-    altHeadingText = document.createElement('p')
-    altHeadingText.innerText = 'PLANETS'
-    altHeading.appendChild(altHeadingText)
+    this.createPTagAndAppend('PLANETS', altHeading)
     return altHeading
   },
 
