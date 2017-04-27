@@ -388,12 +388,14 @@ var PlanetListView = function(container, sortableColumnHeaders, unsortableColumn
 
 PlanetListView.prototype = {
   populateList: function(planetList){
+    //SAVE THE PLANETLIST
+    this.planetList = planetList
     //CLEAR ANY PREVIOUS DATA
     while (this.container.hasChildNodes()){
       this.container.removeChild(this.container.firstChild)
     }
     //RENDER NEW DATA
-    this.createTable(planetList)
+    this.createTable()
   },
 
   //CLEARS ALL OF THE DATA ROWS OUT OF THE TABLE, LEAVING THE HEADER
@@ -464,8 +466,8 @@ PlanetListView.prototype = {
   },
 
   //CREATES THE WHOLE TABLE FROM THE PLANETLIST
-  createTable: function(planetList){
-    this.planetList = planetList
+  createTable: function(){
+
     var table = document.createElement('div')
     table.id = 'planet-flex-grid'
 
