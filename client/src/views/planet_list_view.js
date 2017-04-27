@@ -61,28 +61,29 @@ PlanetListView.prototype = {
     return headingRow
   },
 
+  createAlternativeHeadingRow: function(){
+    var altHeading = document.createElement('div')
+    altHeading.classList.add('alt-heading')
+    altHeadingText = document.createElement('p')
+    altHeadingText.innerText = 'PLANETS'
+    altHeading.appendChild(altHeadingText)
+    return altHeading
+  },
+
   //CREATES THE WHOLE TABLE FROM THE PLANETLIST
   createTable: function(planetList){
     this.planetList = planetList
     var table = document.createElement('div')
     table.id = 'planet-flex-grid'
 
-    //creates the headers first
-    
+    //creates the standard (larger screen size) headers first
     var headingRow = this.createStandardHeadingRow()
-    
-
     //add alternative heading for mobile layout
-    var altHeading = document.createElement('div')
-    altHeading.classList.add('alt-heading')
-    altHeadingText = document.createElement('p')
-    altHeadingText.innerText = 'PLANETS'
-    altHeading.appendChild(altHeadingText)
-    table.appendChild(altHeading)
-
-    //append the normal heading and add everything to table
-
+    var altHeading = this.createAlternativeHeadingRow()
+    
+    //appends both headings and add the table to the overall page section
     table.appendChild(headingRow)
+    table.appendChild(altHeading)
     this.container.appendChild(table)
 
 
