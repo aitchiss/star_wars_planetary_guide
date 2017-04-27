@@ -137,8 +137,8 @@ PlanetListView.prototype = {
       this.createPTagAndAppend(planet.diameter, planetRow)
       this.createPTagAndAppend(planet.rotationPeriod, planetRow)
       this.createPTagAndAppend(planet.orbitalPeriod, planetRow)
-      this.addTerrains(planet.terrains, planetRow)
-      this.addFilms(planet.films, planetRow)
+      this.createListAndAppend(planet.terrains, planetRow)
+      this.createListAndAppend(planet.films, planetRow)
 
       if (index % 2 === 0){
         planetRow.classList.add('contrast-color')
@@ -169,21 +169,13 @@ PlanetListView.prototype = {
     }.bind(this))
   },
 
-  addFilms: function(films, planetRow){
-    var ul = document.createElement('ul')
-    films.forEach(function(film){
-      var li = document.createElement('li')
-      li.innerText = film
-      ul.appendChild(li)
-    })
-    planetRow.appendChild(ul)
-  },
 
-  addTerrains: function(terrains, planetRow){
+  //TAKES A SET OF ITEMS, CREATES A LIST AND APPENDS TO THE ROW GIVEN
+  createListAndAppend: function(items, planetRow){
     var ul = document.createElement('ul')
-    terrains.forEach(function(terrain){
+    items.forEach(function(item){
       var li = document.createElement('li')
-      li.innerText = terrain
+      li.innerText = item
       ul.appendChild(li)
     })
     planetRow.appendChild(ul)
