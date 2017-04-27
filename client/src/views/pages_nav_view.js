@@ -168,6 +168,7 @@ PagesNavView.prototype = {
 
   //CHECKS HIGHLIGHTING AND APPEARANCE OF NAV ITEMS AFTER A CHANGE TO CURRENT PAGE
   reconfigureNavDisplay: function(){
+    this.clearHighlighting()
     this.highlightCurrentPage()
     this.collapsePageNumbers()
     this.collapseElipses()
@@ -175,17 +176,19 @@ PagesNavView.prototype = {
 
   //ENSURES CORRECT PAGE IS HIGHLIGHTED
   highlightCurrentPage: function(){
-    //remove highlight from any previously highlighted number
-    var allNavNumbers = document.querySelectorAll('.nav-number')
-    allNavNumbers.forEach(function(num){
-      num.style.backgroundColor = '#FFFFFF'
-    })
     //highlight the current page
     var currentPageLink = document.querySelector('#page' + this.currentPage)
     currentPageLink.style.backgroundColor = '#F2F3F5'
     currentPageLink.style.borderRadius = '100%'
   },
 
+  //REMOVES CURRENT PAGE HIGHLIGHTING
+  clearHighlighting: function(){
+    var navNumbers = document.querySelectorAll('.nav-number')
+    navNumbers.forEach(function(num){
+      num.style.backgroundColor = '#FFFFFF'
+    })
+  },
  
   //CHECKS IF A PAGE NUMBER IS THE NEXT OR PREVIOUS PAGE FROM THE CURRENT ONE, IF IT ISN'T, IT HIDES IT
   collapsePageNumbers(){

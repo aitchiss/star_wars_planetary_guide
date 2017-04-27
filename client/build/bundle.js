@@ -345,6 +345,7 @@ PagesNavView.prototype = {
 
   //CHECKS HIGHLIGHTING AND APPEARANCE OF NAV ITEMS AFTER A CHANGE TO CURRENT PAGE
   reconfigureNavDisplay: function(){
+    this.clearHighlighting()
     this.highlightCurrentPage()
     this.collapsePageNumbers()
     this.collapseElipses()
@@ -352,17 +353,19 @@ PagesNavView.prototype = {
 
   //ENSURES CORRECT PAGE IS HIGHLIGHTED
   highlightCurrentPage: function(){
-    //remove highlight from any previously highlighted number
-    var allNavNumbers = document.querySelectorAll('.nav-number')
-    allNavNumbers.forEach(function(num){
-      num.style.backgroundColor = '#FFFFFF'
-    })
     //highlight the current page
     var currentPageLink = document.querySelector('#page' + this.currentPage)
     currentPageLink.style.backgroundColor = '#F2F3F5'
     currentPageLink.style.borderRadius = '100%'
   },
 
+  //REMOVES CURRENT PAGE HIGHLIGHTING
+  clearHighlighting: function(){
+    var navNumbers = document.querySelectorAll('.nav-number')
+    navNumbers.forEach(function(num){
+      num.style.backgroundColor = '#FFFFFF'
+    })
+  },
  
   //CHECKS IF A PAGE NUMBER IS THE NEXT OR PREVIOUS PAGE FROM THE CURRENT ONE, IF IT ISN'T, IT HIDES IT
   collapsePageNumbers(){
@@ -621,18 +624,15 @@ SearchView.prototype = {
     this.container.appendChild(this.searchBox)
   },
 
-  attachListener: function(films, planetQuery, planetListView){
+  attachListener: function(films, planetQuery, planetListView, pagesNavView){
     this.searchBox.addEventListener('keydown', function(e){
       if (e.key === 'Enter'){
-        //takes the first word of the search input before converting to lower case and stripping special characters. Planets with two-word names are accessed by searching for the first name only.
+        //takes the first word of the search input before converting to lower case and stripping special characters. Planets with two-word names are accessed in API by searching for the first name only.
         var searchText = this.searchBox.value.split(' ')[0].toLowerCase().replace(/\W/g, '')
         var url = 'https://swapi.co/api/planets/?search=' + searchText
 
         //remove the indicator that the user is on a page of the full results
-        var navNumbers = document.querySelectorAll('.nav-number')
-        navNumbers.forEach(function(num){
-          num.style.backgroundColor = '#FFFFFF'
-        })
+        pagesNavView.clearHighlighting()
       
         planetQuery.getData(url, films, function(planetList){
           planetListView.populateList(planetList)
@@ -853,7 +853,7 @@ app = function(){
       planetListView.populateList(planetList)
       pagesNavView.renderNav(noOfPages)
       pagesNavView.attachListeners(films, planetQuery, planetListView)
-      searchView.attachListener(films, planetQuery, planetListView)
+      searchView.attachListener(films, planetQuery, planetListView, pagesNavView)
     })
   })
   
