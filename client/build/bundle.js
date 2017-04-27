@@ -451,6 +451,22 @@ PlanetListView.prototype = {
     return altHeading
   },
 
+  createMobileHeader: function(){
+    //create a header row
+    var mobileHeader = document.createElement('div')
+    mobileHeader.classList.add('mobile-header')
+
+    //attach the non-list item headers
+    this.sortableColHeaders.forEach(function(element){
+      this.createPTagAndAppend(element, mobileHeader)
+    }.bind(this))
+
+    //attach the list item headers individually, so that they can be given inidvidual ids to help with styling
+    this.createPTagAndAppend('terrain', mobileHeader, 'terrain-mobile-heading')
+    this.createPTagAndAppend('films', mobileHeader, 'films-mobile-heading')
+    return mobileHeader
+  },
+
   //CREATES THE WHOLE TABLE FROM THE PLANETLIST
   createTable: function(planetList){
     this.planetList = planetList
@@ -468,43 +484,21 @@ PlanetListView.prototype = {
     this.container.appendChild(table)
 
 
-
-    //add planet info
+    //ADDS DATA TO THE OVERALL TABLE
 
     planetList.planets.forEach(function(planet, index){
       //create the div that holds the mobile header and the data row
+      //(creating in a div together to allow for a side-by-side flexbox styling on mobile views)
       var headerAndDataDiv = document.createElement('div')
       headerAndDataDiv.classList.add('header-and-data')
 
-      //create a header row
-      var mobileHeader = document.createElement('div')
-      mobileHeader.classList.add('mobile-header'
-        )
-
-      //attach the non-list item headers
-      var colHeaders = ['name', 'population', 'diameter', 'rotation period', 'orbital period']
-      colHeaders.forEach(function(element){
-        var heading = document.createElement('p')
-        heading.innerText = element
-        mobileHeader.appendChild(heading)
-      }.bind(this))
-
-      //attach the list item headers individually
-      var terrainHeading = document.createElement('p')
-      terrainHeading.innerText = 'terrain'
-      terrainHeading.id = 'terrain-mobile-heading'
-      mobileHeader.appendChild(terrainHeading)
-
-      var filmsHeading = document.createElement('p')
-      filmsHeading.innerText = 'films'
-      filmsHeading.id = 'films-mobile-heading'
-      mobileHeader.appendChild(filmsHeading)
-
-      //add the mobile header to the header and data div
-      headerAndDataDiv.appendChild(mobileHeader)
-
+      // create a mobile header
+      var mobileHeader = this.createMobileHeader()
+      //create the planet data row
       var planetRow = this.createPlanetDataRow(planet, index)
       
+      //append both elements to the header and data div, and then append the whole header/data div to the table
+      headerAndDataDiv.appendChild(mobileHeader)
       headerAndDataDiv.appendChild(planetRow)
       table.appendChild(headerAndDataDiv)
     }.bind(this))
@@ -564,9 +558,12 @@ PlanetListView.prototype = {
 
 
   //TAKES TEXT, CREATES A <P> ELEMENT AND APPENDS TO THE ROW GIVEN
-  createPTagAndAppend: function(text, planetRow){
+  createPTagAndAppend: function(text, planetRow, optionalId){
     var pTag = document.createElement('p')
     pTag.innerText = text
+    if (optionalId){
+      pTag.id = optionalId
+    }
     planetRow.appendChild(pTag)
   }
 
