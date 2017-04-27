@@ -16,6 +16,7 @@ The current version of the app assumes:
 
 - That the API will remain in its current format, but additional pages may be added.
 - That the column title "populations" in the initial design was a typo, and therefore I have omitted the final 's'
+- That planets for which every column's data is 'unknown' should not be rendered to the screen (only one such instance currently spotted in API)
 - That a hover colour is desirable for the 'calls to action' on the page. I have added this, but it can be removed or amended easily, according to end user preferences
 - That an alternative use of the colour scheme and an alternative layout for smaller screens is permissable, in order to optimise the user experience for those browsing on smaller tablets or mobile.
 

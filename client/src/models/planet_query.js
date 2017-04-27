@@ -50,6 +50,7 @@ PlanetQuery.prototype = {
     var planets = []
     jsonPlanets.forEach(function(planetInfo){
       var planet = new Planet(planetInfo)
+      //prevents any planets with ONLY unknown qualities from being passed to the ListView for rendering
       if (!planet.checkAllAttributesUnknown()){
         planets.push(planet)
       }
