@@ -513,11 +513,11 @@ PlanetListView.prototype = {
       var planetRow = document.createElement('div')
       planetRow.classList.add('row')
       //add planet details to each row
-      this.addPlanetName(planet.name, planetRow)
-      this.addPopulation(planet.population, planetRow)
-      this.addDiameter(planet.diameter, planetRow)
-      this.addRotationPeriod(planet.rotationPeriod, planetRow)
-      this.addOrbitalPeriod(planet.orbitalPeriod, planetRow)
+      this.createPTagAndAppend(planet.name, planetRow)
+      this.createPTagAndAppend(planet.population, planetRow)
+      this.createPTagAndAppend(planet.diameter, planetRow)
+      this.createPTagAndAppend(planet.rotationPeriod, planetRow)
+      this.createPTagAndAppend(planet.orbitalPeriod, planetRow)
       this.addTerrains(planet.terrains, planetRow)
       this.addFilms(planet.films, planetRow)
 
@@ -570,36 +570,15 @@ PlanetListView.prototype = {
     planetRow.appendChild(ul)
   },
 
-  addOrbitalPeriod: function(orbitalPeriod, planetRow){
-    var pTag = document.createElement('p')
-    pTag.innerText = orbitalPeriod
-    planetRow.appendChild(pTag)
-  },
 
-  addRotationPeriod: function(rotationPeriod, planetRow){
-    var pTag = document.createElement('p')
-    pTag.innerText = rotationPeriod
-    planetRow.appendChild(pTag)
-  },
+  //TAKES TEXT, CREATES A <P> ELEMENT AND APPENDS TO THE ROW GIVEN
 
-  addDiameter: function(diameter, planetRow){
+  createPTagAndAppend: function(text, planetRow){
     var pTag = document.createElement('p')
-    pTag.innerText = diameter
+    pTag.innerText = text
     planetRow.appendChild(pTag)
-  },
+  }
 
-  addPlanetName: function(name, planetRow){
-
-    var pTag = document.createElement('p')
-    pTag.innerText = name
-    planetRow.appendChild(pTag)
-  },
-
-  addPopulation: function(population, planetRow){
-    var pTag = document.createElement('p')
-    pTag.innerText = population
-    planetRow.appendChild(pTag)
-  },
 
   
 
