@@ -114,14 +114,13 @@ var PlanetList = __webpack_require__(6)
 
 var PlanetQuery = function(){
   this.processedPlanets = []
-  this.allPlanetLists = []
+  this.planetList
   this.pages = 1
 }
 
 PlanetQuery.prototype = {
 
   getData: function(url, filmInfo, callbackToRender){
-    this.allPlanetLists = []
     var request = new XMLHttpRequest()
     request.open('GET', url)
     request.onload = function(){
@@ -129,7 +128,10 @@ PlanetQuery.prototype = {
         var response = request.responseText
         var planetInfo = JSON.parse(response)
         var planetsWithoutFilmTitles = this.convertJsonObjectsToPlanets(planetInfo.results)
+
+        //gets a reference to the number of pages a user will be able to tab through
         this.pages = Math.ceil(planetInfo.count / 10)
+        //uses previously gathered film information to complete missing data from API call
         this.populateFilmNames(planetsWithoutFilmTitles, filmInfo, callbackToRender)
       }
     }.bind(this)
@@ -138,16 +140,16 @@ PlanetQuery.prototype = {
 
 
   populateFilmNames: function(planets, filmData, callbackToRender){
-    var planetList = new PlanetList([])
+    var newPlanetList = new PlanetList([])
     planets.forEach(function(planet){
       for (var i = 0; i < planet.films.length; i++){
         var filmLink = planet.films[i]
         planet.films[i] = filmData[filmLink] 
       }
-      planetList.planets.push(planet)
+      newPlanetList.planets.push(planet)
     }.bind(this))
-    this.allPlanetLists.push(planetList)
-    callbackToRender(this.allPlanetLists[0], this.pages)
+    this.planetList = newPlanetList
+    callbackToRender(this.planetList, this.pages)
   },
 
   convertJsonObjectsToPlanets: function(jsonPlanets){
