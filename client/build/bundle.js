@@ -382,7 +382,7 @@ module.exports = PagesNavView
 var PlanetListView = function(container, sortableColumnHeaders, unsortableColumnHeaders){
   this.container = container
   this.sortableColHeaders = sortableColumnHeaders
-  this.unsortableColHedaers = unsortableColumnHeaders
+  this.unsortableColHeaders = unsortableColumnHeaders
   this.planetList 
 }
 
@@ -419,15 +419,7 @@ PlanetListView.prototype = {
     table.lastChild.classList.add('final-row')
   },
 
-  //CREATES THE WHOLE TABLE FROM THE PLANETLIST
-  createTable: function(planetList){
-    this.planetList = planetList
-    var table = document.createElement('div')
-    table.id = 'planet-flex-grid'
-
-    //creates the headers first
-    // var colHeaders = ['name', 'population', 'diameter', 'rotation period', 'orbital period', 'terrain', 'films']
-
+  createStandardHeadingRow: function(){
     var headingRow = document.createElement('div')
     headingRow.classList.add('row')
     headingRow.classList.add('heading')
@@ -439,25 +431,27 @@ PlanetListView.prototype = {
       heading.classList.add('sortable')
       this.addSortingEventListeners(heading)
       headingRow.appendChild(heading) 
-
-      // if(colHeader !== 'terrain' && colHeader !== 'films'){
-      //   heading.classList.add('sortable')
-      //   this.addSortingEventListeners(heading)
-      //   headingRow.appendChild(heading)
-        
-      // } else {
-      //   headingRow.appendChild(heading)
-
-      // }
-      
     }.bind(this))
 
-    this.unsortableColHedaers.forEach(function(colHeader){
-      console.log('adding')
+    this.unsortableColHeaders.forEach(function(colHeader){
       var heading = document.createElement('p')
       heading.innerText = colHeader
       headingRow.appendChild(heading) 
     }.bind(this))
+
+    return headingRow
+  },
+
+  //CREATES THE WHOLE TABLE FROM THE PLANETLIST
+  createTable: function(planetList){
+    this.planetList = planetList
+    var table = document.createElement('div')
+    table.id = 'planet-flex-grid'
+
+    //creates the headers first
+    
+    var headingRow = this.createStandardHeadingRow()
+    
 
     //add alternative heading for mobile layout
     var altHeading = document.createElement('div')
