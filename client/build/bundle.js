@@ -400,7 +400,6 @@ PlanetListView.prototype = {
     //CLEAR THE TABLE
     var table = document.querySelector('#planet-flex-grid')
     var tableChildren = table.childNodes
-    console.log(table.childNodes)
 
     while(table.childNodes.length > 2){
       table.removeChild(table.lastChild)
