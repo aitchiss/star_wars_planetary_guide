@@ -418,7 +418,7 @@ var PlanetListView = function(container, sortableColumnHeaders, unsortableColumn
 
 PlanetListView.prototype = {
     //CALLED BY THE PLANETQUERY ONCE DATA RECEIVED FROM API
-  populateList: function(planetList, planetQuery, films){
+  populateList: function(planetList){
     //saves the planet list
     this.planetList = planetList
     //clears any previous data
@@ -860,7 +860,7 @@ app = function(){
   //RETRIEVES FILM NAMES FROM API, BEFORE RETRIEVING PLANET DETAILS AND POPULATING THE PAGE
   filmQuery.getFilmData(function(films){
     planetQuery.getData('http://swapi.co/api/planets', films, function(planetList, noOfPages){
-      planetListView.populateList(planetList, planetQuery, films)
+      planetListView.populateList(planetList)
       pagesNavView.renderNav(noOfPages)
       pagesNavView.attachListeners(films, planetQuery, planetListView)
       searchView.attachListener(films, planetQuery, planetListView, pagesNavView)

@@ -7,7 +7,7 @@ var PlanetListView = function(container, sortableColumnHeaders, unsortableColumn
 
 PlanetListView.prototype = {
     //CALLED BY THE PLANETQUERY ONCE DATA RECEIVED FROM API
-  populateList: function(planetList, planetQuery, films){
+  populateList: function(planetList){
     //saves the planet list
     this.planetList = planetList
     //clears any previous data
