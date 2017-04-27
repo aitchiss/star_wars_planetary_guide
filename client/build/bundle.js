@@ -426,7 +426,9 @@ PlanetListView.prototype = {
       }
 
       table.appendChild(planetRow)
+
     }.bind(this))
+    table.lastChild.classList.add('final-row')
   },
 
   createTable: function(planetList){
