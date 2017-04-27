@@ -163,7 +163,10 @@ PlanetQuery.prototype = {
     var planets = []
     jsonPlanets.forEach(function(planetInfo){
       var planet = new Planet(planetInfo)
-      planets.push(planet)
+      if (!planet.checkAllAttributesUnknown()){
+        planets.push(planet)
+      }
+      
     }.bind(this))
     return planets
   }
@@ -523,6 +526,7 @@ PlanetListView.prototype = {
   //HANDLES THE ADDITION OF ALL ITEMS TO THE TABLE, EXCEPT THE TOP HEADER
   addPlanetDataCellsToTable: function(table){
     this.planetList.planets.forEach(function(planet, index){
+
       //creates a div to hold the mobile data headers and the data row
       //(to allow for a side-by-side flexbox styling on mobile views)
       var headerAndDataDiv = document.createElement('div')
@@ -537,6 +541,7 @@ PlanetListView.prototype = {
       headerAndDataDiv.appendChild(mobileHeader)
       headerAndDataDiv.appendChild(planetRow)
       table.appendChild(headerAndDataDiv)
+     
     }.bind(this))
   },
 
@@ -672,6 +677,17 @@ Planet.prototype = {
   parseTerrains: function(terrainString){
     var terrainArray = terrainString.split(',')
     return terrainArray
+  },
+
+  checkAllAttributesUnknown: function(){
+    if (this.name !== 'unknown') return false
+    if (this.population !== 'unknown') return false
+    if (this.diameter !== 'unknown') return false
+    if (this.rotationPeriod !== 'unknown') return false
+    if (this.orbitalPeriod !== 'unknown') return false
+    if (this.terrains[0] !== 'unknown') return false
+    if (this.films.length > 0) return false
+    return true
   }
 }
 

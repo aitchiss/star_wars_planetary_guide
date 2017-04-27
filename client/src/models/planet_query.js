@@ -50,7 +50,10 @@ PlanetQuery.prototype = {
     var planets = []
     jsonPlanets.forEach(function(planetInfo){
       var planet = new Planet(planetInfo)
-      planets.push(planet)
+      if (!planet.checkAllAttributesUnknown()){
+        planets.push(planet)
+      }
+      
     }.bind(this))
     return planets
   }

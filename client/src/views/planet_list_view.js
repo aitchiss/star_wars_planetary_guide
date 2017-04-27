@@ -112,6 +112,7 @@ PlanetListView.prototype = {
   //HANDLES THE ADDITION OF ALL ITEMS TO THE TABLE, EXCEPT THE TOP HEADER
   addPlanetDataCellsToTable: function(table){
     this.planetList.planets.forEach(function(planet, index){
+
       //creates a div to hold the mobile data headers and the data row
       //(to allow for a side-by-side flexbox styling on mobile views)
       var headerAndDataDiv = document.createElement('div')
@@ -126,6 +127,7 @@ PlanetListView.prototype = {
       headerAndDataDiv.appendChild(mobileHeader)
       headerAndDataDiv.appendChild(planetRow)
       table.appendChild(headerAndDataDiv)
+     
     }.bind(this))
   },
 

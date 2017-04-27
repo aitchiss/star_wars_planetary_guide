@@ -23,7 +23,8 @@ describe('Planet tests:', function(){
       diameter: 'unknown',
       rotation_period: 'unknown',
       orbital_period: 'unknown',
-      terrain: 'unknown'
+      terrain: 'unknown',
+      films: []
     })
   })
 
@@ -73,6 +74,14 @@ describe('Planet tests:', function(){
 
   it('can hold mutliple film titles', function(){
     assert.strictEqual('A New Hope', planet.films[1])
+  })
+
+  it('checks if all attributes are unknown, and returns false if attributes are known', function(){
+    assert.strictEqual(false, planet.checkAllAttributesUnknown())
+  })
+
+  it('checks if all attributes are unknown, and returns true if all are unknown', function(){
+    assert.strictEqual(true, unknownValuesPlanet.checkAllAttributesUnknown())
   })
 
 })
