@@ -9,6 +9,7 @@ var PlanetQuery = function(){
 
 PlanetQuery.prototype = {
 
+  //MAKES THE API REQUEST FOR PLANET INFORMATION
   getData: function(url, filmInfo, callbackToRender){
     var request = new XMLHttpRequest()
     request.open('GET', url)
