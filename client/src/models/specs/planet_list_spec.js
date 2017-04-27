@@ -125,24 +125,24 @@ describe('PlanetList tests: ', function(){
  ///SORTING BY ROTATION PERIOD
 
  it('can sort by rotation period - ascending', function(){
-   planetList.sortAscending('rotationPeriod')
+   planetList.sortAscending('rotation period')
    assert.strictEqual('Alderaan', planetList.planets[0].name)
    assert.strictEqual('Tatooine', planetList.planets[1].name)
  })
 
  it('places unknown rotation period last when sorting ascending', function(){
-   planetList.sortAscending('rotationPeriod')
+   planetList.sortAscending('rotation period')
    assert.strictEqual('unknown', planetList.planets[3].name)
  })
 
  it('can sort by rotation period - descending', function(){
-   planetList.sortDescending('rotationPeriod')
+   planetList.sortDescending('rotation period')
    assert.strictEqual('Endor', planetList.planets[0].name)
    assert.strictEqual('Tatooine', planetList.planets[1].name)
  })
 
  it('places unknown rotation period last when sorting descending', function(){
-   planetList.sortDescending('rotationPeriod')
+   planetList.sortDescending('rotation period')
    assert.strictEqual('unknown', planetList.planets[3].name)
  })
 
@@ -150,24 +150,24 @@ describe('PlanetList tests: ', function(){
  ///SORTING BY ORBITAL PERIOD
 
  it('can sort by orbital period - ascending', function(){
-   planetList.sortAscending('orbitalPeriod')
+   planetList.sortAscending('orbital period')
    assert.strictEqual('Alderaan', planetList.planets[0].name)
    assert.strictEqual('Tatooine', planetList.planets[1].name)
  })
 
  it('places unknown orbital period last when sorting ascending', function(){
-   planetList.sortAscending('orbitalPeriod')
+   planetList.sortAscending('orbital period')
    assert.strictEqual('unknown', planetList.planets[3].name)
  })
 
  it('can sort by orbital period - descending', function(){
-   planetList.sortDescending('orbitalPeriod')
+   planetList.sortDescending('orbital period')
    assert.strictEqual('Endor', planetList.planets[0].name)
    assert.strictEqual('Tatooine', planetList.planets[1].name)
  })
 
  it('places unknown orbital period last when sorting descending', function(){
-   planetList.sortDescending('orbitalPeriod')
+   planetList.sortDescending('orbital period')
    assert.strictEqual('unknown', planetList.planets[3].name)
  })
 

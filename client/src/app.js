@@ -21,18 +21,16 @@ app = function(){
   var pagesNavContainer = document.querySelector('#pages-nav')
   var pagesNavView = new PagesNavView(pagesNavContainer)
   
-  
+  //RETRIEVES FILM NAMES FROM API, BEFORE RETRIEVING PLANET DETAILS AND POPULATING THE PAGE
   filmQuery.getFilmData(function(films){
     planetQuery.getData('http://swapi.co/api/planets', films, function(planetList, noOfPages){
       planetListView.populateList(planetList)
       pagesNavView.renderNav(noOfPages)
       pagesNavView.attachListeners(films, planetQuery, planetListView)
       searchView.attachListener(films, planetQuery, planetListView)
-
     })
   })
-
-
+  
 }
 
 
