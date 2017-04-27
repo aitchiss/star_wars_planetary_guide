@@ -167,7 +167,7 @@ header p {
 
 
 /*STANDARD BROWSER SIZE OR IPAD LANDSCAPE ORIENTATION*/
-@media screen and (min-width: 980px) and (min-device-width: 980px){
+@media screen and (min-width: 875px) and (min-device-width: 875px){
 
   body{
     font-size: 0.9em;

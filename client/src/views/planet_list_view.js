@@ -191,15 +191,11 @@ PlanetListView.prototype = {
 
 
   //TAKES TEXT, CREATES A <P> ELEMENT AND APPENDS TO THE ROW GIVEN
-
   createPTagAndAppend: function(text, planetRow){
     var pTag = document.createElement('p')
     pTag.innerText = text
     planetRow.appendChild(pTag)
   }
-
-
-  
 
 }
 
