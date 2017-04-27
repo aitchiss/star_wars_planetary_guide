@@ -155,7 +155,7 @@ header p {
 
 
 /*iPad portrait*/
-@media screen and (min-width: 500px){
+@media screen and (min-width: 500px) and (min-device-width: 500px){
   #planet-flex-grid{
     font-size: 1.1em;
   }
@@ -163,7 +163,7 @@ header p {
 
 
 /*iPad landscape orientation and larger*/
-@media screen and (min-width: 980px){
+@media screen and (min-width: 980px) and (min-device-width: 980px){
 
   body{
     font-size: 0.9em;
