@@ -14,7 +14,9 @@ app = function(){
   searchView.render()
 
   var planetListContainer = document.querySelector('#planet-list')
-  var planetListView = new PlanetListView(planetListContainer)
+  var sortableColumnHeaders = ['name', 'population', 'diameter', 'rotation period', 'orbital period']
+  var unsortableColumnHeaders = ['terrain', 'films']
+  var planetListView = new PlanetListView(planetListContainer, sortableColumnHeaders, unsortableColumnHeaders)
 
   var pagesNavContainer = document.querySelector('#pages-nav')
   var pagesNavView = new PagesNavView(pagesNavContainer)
