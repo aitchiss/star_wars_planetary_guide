@@ -183,22 +183,9 @@ var PagesNavView = function(container){
 
 PagesNavView.prototype = {
 
-  createNavItemWithID: function(text, id){
-    var element = document.createElement('p')
-    element.innerText = text
-    element.id = id
-    return element
-  },
-
-  createNavItemWithClass: function(text, classDesc){
-    var element = document.createElement('p')
-    element.innerText = text
-    element.classList.add(classDesc)
-    return element
-  },
-
+  //CALLED IN APP ONCE NUMBER OF PAGES IS RETRIEVED BY PLANETQUERY
   renderNav: function(pageNumbers){
-    //ADD PAGE NOS TO ARRAY
+    // add page numbers to array
     for (var i = 1; i <= pageNumbers; i++){
       this.pageNumbers.push(i)
     }
@@ -243,56 +230,27 @@ PagesNavView.prototype = {
     var last = this.createNavItemWithID('Last', 'last-page')
     this.container.appendChild(last)
 
-    this.highlightCurrentPage()
-    this.collapsePageNumbers()
-    this.collapseElipses()
-
+    //sets up highlighting and collapsing of page numbers/elipses
+    this.reconfigureNavDisplay()
   },
 
-  collapsePageNumbers(){
-    var allNavNumbers = document.querySelectorAll('.nav-number')
-
-    //checks if a page number is the next or previous page from the current one. If it isn't, it hides it from view.
-    allNavNumbers.forEach(function(num){
-      if (parseInt(num.innerText) !== this.currentPage && parseInt(num.innerText) !== this.currentPage + 1 && parseInt(num.innerText) !== this.currentPage - 1 ){
-        num.style.display = 'none'
-      } else {
-        num.style.display = 'block'
-      }
-    }.bind(this))
-    
+  //HELPER METHOD TO CREATE NAV ITEM
+  createNavItemWithID: function(text, id){
+    var element = document.createElement('p')
+    element.innerText = text
+    element.id = id
+    return element
   },
 
-  collapseElipses: function(){
-    //checks whether the elipses should be displayed, based on the current page number
-    var initialElipses = document.querySelectorAll('.elipses')[0]
-    var lastElipses = document.querySelectorAll('.elipses')[1]
-
-    if(this.currentPage <= 2){
-      initialElipses.style.display = 'none'
-    } else {
-      initialElipses.style.display = 'block'
-    }
-
-    if (this.currentPage > (this.pageNumbers.length - 2)){
-      lastElipses.style.display = 'none'
-    } else {
-      lastElipses.style.display = 'block'
-    }
+  //HELPER METHOD TO CREATE NAV ITEM
+  createNavItemWithClass: function(text, classDesc){
+    var element = document.createElement('p')
+    element.innerText = text
+    element.classList.add(classDesc)
+    return element
   },
 
-  highlightCurrentPage: function(){
-    //REMOVE HIGHLIGHT FROM OLD CURRENT
-    var allNavNumbers = document.querySelectorAll('.nav-number')
-    allNavNumbers.forEach(function(num){
-      num.style.backgroundColor = '#FFFFFF'
-    })
-    //HIGHLIGHT NEW CURRENT
-    var currentPageLink = document.querySelector('#page' + this.currentPage)
-    currentPageLink.style.backgroundColor = '#F2F3F5'
-    currentPageLink.style.borderRadius = '100%'
-  },
-
+  //ATTACHES ALL THE LISTENERS NEEDED IN NAV SECTION
   attachListeners: function(films, planetQuery, planetListView){
     //ATTACH LISTENER TO ELIPSES
     var initialElipses = document.querySelectorAll('.elipses')[0]
@@ -331,12 +289,12 @@ PagesNavView.prototype = {
 
     // ATTACH LISTENER TO LAST PAGE
     var lastPage = document.querySelector('#last-page')
-    var lastPageNumber = this.pageNumbers.length
+    
     lastPage.addEventListener('click', function(){
       this.currentPage = this.pageNumbers.length
       this.reconfigureNavDisplay()
       
-      planetQuery.getData(('http://swapi.co/api/planets/?page=' + lastPageNumber), films, function(planetList){
+      planetQuery.getData(('http://swapi.co/api/planets/?page=' + this.pageNumbers.length), films, function(planetList){
         planetListView.populateList(planetList)
       })
     }.bind(this))
@@ -354,7 +312,7 @@ PagesNavView.prototype = {
       }
     }.bind(this))
 
-    //ATTACH LISTERNER TO FORWARD ARROW
+    //ATTACH LISTENER TO FORWARD ARROW
     var forwardArrow = document.querySelector('#forward-arrow')
     forwardArrow.addEventListener('click', function(){
       if (this.currentPage < this.pageNumbers.length){
@@ -390,8 +348,53 @@ PagesNavView.prototype = {
     this.highlightCurrentPage()
     this.collapsePageNumbers()
     this.collapseElipses()
-  }
+  },
 
+  //ENSURES CORRECT PAGE IS HIGHLIGHTED
+  highlightCurrentPage: function(){
+    //remove highlight from any previously highlighted number
+    var allNavNumbers = document.querySelectorAll('.nav-number')
+    allNavNumbers.forEach(function(num){
+      num.style.backgroundColor = '#FFFFFF'
+    })
+    //highlight the current page
+    var currentPageLink = document.querySelector('#page' + this.currentPage)
+    currentPageLink.style.backgroundColor = '#F2F3F5'
+    currentPageLink.style.borderRadius = '100%'
+  },
+
+ 
+  //CHECKS IF A PAGE NUMBER IS THE NEXT OR PREVIOUS PAGE FROM THE CURRENT ONE, IF IT ISN'T, IT HIDES IT
+  collapsePageNumbers(){
+    var allNavNumbers = document.querySelectorAll('.nav-number')
+
+    allNavNumbers.forEach(function(num){
+      if (parseInt(num.innerText) !== this.currentPage && parseInt(num.innerText) !== this.currentPage + 1 && parseInt(num.innerText) !== this.currentPage - 1 ){
+        num.style.display = 'none'
+      } else {
+        num.style.display = 'block'
+      }
+    }.bind(this))
+    
+  },
+
+  collapseElipses: function(){
+    //checks whether the elipses should be displayed, based on the current page number
+    var initialElipses = document.querySelectorAll('.elipses')[0]
+    var lastElipses = document.querySelectorAll('.elipses')[1]
+
+    if(this.currentPage <= 2){
+      initialElipses.style.display = 'none'
+    } else {
+      initialElipses.style.display = 'block'
+    }
+
+    if (this.currentPage > (this.pageNumbers.length - 2)){
+      lastElipses.style.display = 'none'
+    } else {
+      lastElipses.style.display = 'block'
+    }
+  }
 
 }
 
