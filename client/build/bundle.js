@@ -434,9 +434,7 @@ PlanetListView.prototype = {
     }.bind(this))
 
     this.unsortableColHeaders.forEach(function(colHeader){
-      var heading = document.createElement('p')
-      heading.innerText = colHeader
-      headingRow.appendChild(heading) 
+      this.createPTagAndAppend(colHeader, headingRow)
     }.bind(this))
 
     return headingRow
@@ -473,7 +471,7 @@ PlanetListView.prototype = {
     var table = document.createElement('div')
     table.id = 'planet-flex-grid'
 
-    //creates the standard (larger screen size) header row first, and also the alternative heading for mobile layour
+    //creates the standard (larger screen size) header row first, and then the alternative heading for mobile layout
     var headingRow = this.createStandardHeadingRow()
     var altHeading = this.createAlternativeHeadingRow()
     
@@ -487,17 +485,17 @@ PlanetListView.prototype = {
     
     //gives the last row of the table a class to allow it to be styled differently
     table.lastChild.lastChild.classList.add('final-row')
-    
   },
 
+  //HANDLES THE ADDITION OF ALL ITEMS TO THE TABLE, EXCEPT THE TOP HEADER
   addPlanetDataCellsToTable: function(table){
     this.planetList.planets.forEach(function(planet, index){
-      //create the div that holds the mobile header and the data row
-      //(creating in a div together to allow for a side-by-side flexbox styling on mobile views)
+      //creates a div to hold the mobile data headers and the data row
+      //(to allow for a side-by-side flexbox styling on mobile views)
       var headerAndDataDiv = document.createElement('div')
       headerAndDataDiv.classList.add('header-and-data')
 
-      // create a mobile header
+      // create a mobile header (which lists the data labels)
       var mobileHeader = this.createMobileHeader()
       //create the planet data row
       var planetRow = this.createPlanetDataRow(planet, index)
@@ -514,6 +512,7 @@ PlanetListView.prototype = {
     //creates the row element
     var planetRow = document.createElement('div')
     planetRow.classList.add('row')
+
     //adds planet details to each row
     this.createPTagAndAppend(planet.name, planetRow)
     this.createPTagAndAppend(planet.population, planetRow)
@@ -522,6 +521,7 @@ PlanetListView.prototype = {
     this.createPTagAndAppend(planet.orbitalPeriod, planetRow)
     this.createListAndAppend(planet.terrains, planetRow)
     this.createListAndAppend(planet.films, planetRow)
+
     //applies class to ensure contrasting row colours
     if (index % 2 === 0){
       planetRow.classList.add('contrast-color')
@@ -532,7 +532,7 @@ PlanetListView.prototype = {
     return planetRow
   },
 
-  //ADDs EVENT LISTENERS FOR SORTING
+  //ADDS EVENT LISTENERS FOR SORTING
   addSortingEventListeners: function(heading){
     heading.addEventListener('click', function(){
 
@@ -560,7 +560,7 @@ PlanetListView.prototype = {
   },
 
 
-  //TAKES TEXT, CREATES A <P> ELEMENT AND APPENDS TO THE ROW GIVEN
+  //TAKES TEXT, CREATES A <P> ELEMENT AND APPENDS TO THE ROW GIVEN. OPTIONALLY TAKES AN ID TO GIVE TO THE ELEMENT
   createPTagAndAppend: function(text, planetRow, optionalId){
     var pTag = document.createElement('p')
     pTag.innerText = text
