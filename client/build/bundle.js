@@ -407,22 +407,23 @@ PlanetListView.prototype = {
 
     //SET UP ONLY THE ELEMENT WE WANT TO REFRESH
     planetList.planets.forEach(function(planet, index){
-      var planetRow = document.createElement('div')
-      planetRow.classList.add('row')
-      //add planet details to each row
-      this.addPlanetName(planet.name, planetRow)
-      this.addPopulation(planet.population, planetRow)
-      this.addDiameter(planet.diameter, planetRow)
-      this.addRotationPeriod(planet.rotationPeriod, planetRow)
-      this.addOrbitalPeriod(planet.orbitalPeriod, planetRow)
-      this.addTerrains(planet.terrains, planetRow)
-      this.addFilms(planet.films, planetRow)
+      var planetRow = this.createPlanetDataRow(planet, index)
+      // var planetRow = document.createElement('div')
+      // planetRow.classList.add('row')
+      // //add planet details to each row
+      // this.addPlanetName(planet.name, planetRow)
+      // this.addPopulation(planet.population, planetRow)
+      // this.addDiameter(planet.diameter, planetRow)
+      // this.addRotationPeriod(planet.rotationPeriod, planetRow)
+      // this.addOrbitalPeriod(planet.orbitalPeriod, planetRow)
+      // this.addTerrains(planet.terrains, planetRow)
+      // this.addFilms(planet.films, planetRow)
 
-      if (index % 2 === 0){
-        planetRow.classList.add('contrast-color')
-      } else {
-        planetRow.classList.add('no-contrast')
-      }
+      // if (index % 2 === 0){
+      //   planetRow.classList.add('contrast-color')
+      // } else {
+      //   planetRow.classList.add('no-contrast')
+      // }
 
       table.appendChild(planetRow)
 
@@ -510,30 +511,35 @@ PlanetListView.prototype = {
       //add the mobile header to the header and data div
       headerAndDataDiv.appendChild(mobileHeader)
 
-      var planetRow = document.createElement('div')
-      planetRow.classList.add('row')
-      //add planet details to each row
-      this.createPTagAndAppend(planet.name, planetRow)
-      this.createPTagAndAppend(planet.population, planetRow)
-      this.createPTagAndAppend(planet.diameter, planetRow)
-      this.createPTagAndAppend(planet.rotationPeriod, planetRow)
-      this.createPTagAndAppend(planet.orbitalPeriod, planetRow)
-      this.createListAndAppend(planet.terrains, planetRow)
-      this.createListAndAppend(planet.films, planetRow)
-
-      if (index % 2 === 0){
-        planetRow.classList.add('contrast-color')
-      } else {
-        planetRow.classList.add('no-contrast')
-      }
-
-
+      var planetRow = this.createPlanetDataRow(planet, index)
+      
       headerAndDataDiv.appendChild(planetRow)
       table.appendChild(headerAndDataDiv)
     }.bind(this))
 
     table.lastChild.lastChild.classList.add('final-row')
     
+  },
+
+  createPlanetDataRow: function(planet, index){
+    var planetRow = document.createElement('div')
+    planetRow.classList.add('row')
+    //add planet details to each row
+    this.createPTagAndAppend(planet.name, planetRow)
+    this.createPTagAndAppend(planet.population, planetRow)
+    this.createPTagAndAppend(planet.diameter, planetRow)
+    this.createPTagAndAppend(planet.rotationPeriod, planetRow)
+    this.createPTagAndAppend(planet.orbitalPeriod, planetRow)
+    this.createListAndAppend(planet.terrains, planetRow)
+    this.createListAndAppend(planet.films, planetRow)
+
+    if (index % 2 === 0){
+      planetRow.classList.add('contrast-color')
+    } else {
+      planetRow.classList.add('no-contrast')
+    }
+
+    return planetRow
   },
 
   addSortingEventListeners: function(heading){
