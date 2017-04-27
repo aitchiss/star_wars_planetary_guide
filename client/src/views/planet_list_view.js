@@ -16,12 +16,10 @@ PlanetListView.prototype = {
     }
 
     if (this.planetList.planets.length === 0){
-      //display error message if no data found for search, and after 3 seconds reload the page
+      //displays error message if no data found for search, and after 3 seconds reloads the page
       var nothingFound = 'Sorry, no planets matched your search'
       this.createPTagAndAppend(nothingFound, this.container, 'empty-search-result')
-      setTimeout(function(){ 
-        location.reload()
-      }, 3000)
+      setTimeout(function(){ location.reload() }, 3000)
     } else {
       //renders new data
       this.createTable()
