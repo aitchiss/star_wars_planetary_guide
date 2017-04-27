@@ -396,35 +396,21 @@ PlanetListView.prototype = {
     
   },
 
-  refreshWithSortedData: function(planetList){
-    //CLEAR THE TABLE
-    var table = document.querySelector('#planet-flex-grid')
-    var tableChildren = table.childNodes
-
+  //CLEARS ALL OF THE DATA ROWS OUT OF THE TABLE, LEAVING THE HEADER
+  clearDataTable: function(table){
     while(table.childNodes.length > 2){
       table.removeChild(table.lastChild)
     }
+  },
+
+  refreshWithSortedData: function(planetList){
+    //first clears the table
+    var table = document.querySelector('#planet-flex-grid')
+    this.clearDataTable(table)
 
     //SET UP ONLY THE ELEMENT WE WANT TO REFRESH
     planetList.planets.forEach(function(planet, index){
       var planetRow = this.createPlanetDataRow(planet, index)
-      // var planetRow = document.createElement('div')
-      // planetRow.classList.add('row')
-      // //add planet details to each row
-      // this.addPlanetName(planet.name, planetRow)
-      // this.addPopulation(planet.population, planetRow)
-      // this.addDiameter(planet.diameter, planetRow)
-      // this.addRotationPeriod(planet.rotationPeriod, planetRow)
-      // this.addOrbitalPeriod(planet.orbitalPeriod, planetRow)
-      // this.addTerrains(planet.terrains, planetRow)
-      // this.addFilms(planet.films, planetRow)
-
-      // if (index % 2 === 0){
-      //   planetRow.classList.add('contrast-color')
-      // } else {
-      //   planetRow.classList.add('no-contrast')
-      // }
-
       table.appendChild(planetRow)
 
     }.bind(this))
@@ -457,8 +443,6 @@ PlanetListView.prototype = {
         headingRow.appendChild(heading)
 
       }
-      
-      
       
     }.bind(this))
 
@@ -521,10 +505,12 @@ PlanetListView.prototype = {
     
   },
 
+  //CREATES THE DATA ROWS FOR EACH PLANET
   createPlanetDataRow: function(planet, index){
+    //creates the row element
     var planetRow = document.createElement('div')
     planetRow.classList.add('row')
-    //add planet details to each row
+    //adds planet details to each row
     this.createPTagAndAppend(planet.name, planetRow)
     this.createPTagAndAppend(planet.population, planetRow)
     this.createPTagAndAppend(planet.diameter, planetRow)
@@ -532,7 +518,7 @@ PlanetListView.prototype = {
     this.createPTagAndAppend(planet.orbitalPeriod, planetRow)
     this.createListAndAppend(planet.terrains, planetRow)
     this.createListAndAppend(planet.films, planetRow)
-
+    //applies class to ensure contrasting row colours
     if (index % 2 === 0){
       planetRow.classList.add('contrast-color')
     } else {
