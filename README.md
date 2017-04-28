@@ -8,7 +8,7 @@ This web application pulls data from the Star Wars API (http://swapi.co/api/plan
 - run the command "npm start" in the main directory
 - go to http://localhost:3000/
 
-All script files have been bundled using Webpack into bundle.js
+All script files have been bundled using Webpack into a single script file, bundle.js
 
 ### Assumptions made
 
@@ -23,3 +23,5 @@ The current version of the app assumes:
 ### Other notes
 
 - Being currently unfamiliar with testing suites that can be used for asynchronous activities, there are a limited number of tests in the project. Given the time constraints, I was unable to conduct enough research to be able to take a TDD approach to asynchronous elements. However, all aspects were fully tested in the browser, and I look forward to taking more time to explore such testing options.
+
+- This project was completed part-way through my studies at CodeClan. In subsequent weeks I will be learning other useful libraries which could have been applied to this project, e.g. React.
