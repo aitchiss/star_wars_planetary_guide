@@ -578,11 +578,16 @@ PlanetListView.prototype = {
     this.createPTagAndAppend(this.formatNumber(planet.rotationPeriod), planetRow)
     this.createPTagAndAppend(this.formatNumber(planet.orbitalPeriod), planetRow)
     
-    
     this.createListAndAppend(planet.terrains, planetRow)
     this.createListAndAppend(planet.films, planetRow)
 
     //applies class to ensure contrasting row colours
+    this.attachCorrectBackgroundColour(planetRow, index)
+    return planetRow
+  },
+
+  //ATTACHES CLASS DEPENDING ON WHAT BACKGROUND COLOUR THE ROW SHOULD HAVE
+  attachCorrectBackgroundColour: function(planetRow, index){
     if (index % 2 === 0){
       planetRow.classList.add('contrast-color')
     } else {
