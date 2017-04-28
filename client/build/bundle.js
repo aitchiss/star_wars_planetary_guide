@@ -571,10 +571,14 @@ PlanetListView.prototype = {
 
     //adds planet details to each row
     this.createPTagAndAppend(planet.name, planetRow)
-    this.createPTagAndAppend(planet.population, planetRow)
-    this.createPTagAndAppend(planet.diameter, planetRow)
-    this.createPTagAndAppend(planet.rotationPeriod, planetRow)
-    this.createPTagAndAppend(planet.orbitalPeriod, planetRow)
+
+    //if number data is not 'unknown', uses helper method to make large numbers more legible
+    this.createPTagAndAppend(this.formatNumber(planet.population), planetRow)
+    this.createPTagAndAppend(this.formatNumber(planet.diameter), planetRow)
+    this.createPTagAndAppend(this.formatNumber(planet.rotationPeriod), planetRow)
+    this.createPTagAndAppend(this.formatNumber(planet.orbitalPeriod), planetRow)
+    
+    
     this.createListAndAppend(planet.terrains, planetRow)
     this.createListAndAppend(planet.films, planetRow)
 
@@ -586,6 +590,15 @@ PlanetListView.prototype = {
     }
 
     return planetRow
+  },
+
+  //HELPER METHOD TO FORMAT NUMBERS WITH COMMAS IN APPROPRIATE PLACES
+  formatNumber: function(numberData){
+    if (numberData !== 'unknown'){
+      return numberData.toLocaleString()
+    } else {
+      return numberData
+    }
   },
 
   //CLEARS ALL OF THE DATA ROWS OUT OF THE TABLE, LEAVING THE HEADER
@@ -679,6 +692,7 @@ Planet.prototype = {
     var terrainArray = terrainString.split(',')
     return terrainArray
   },
+
 
   checkAllAttributesUnknown: function(){
     if (this.name !== 'unknown') return false

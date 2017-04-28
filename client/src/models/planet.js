@@ -14,6 +14,7 @@ Planet.prototype = {
     return terrainArray
   },
 
+
   checkAllAttributesUnknown: function(){
     if (this.name !== 'unknown') return false
     if (this.population !== 'unknown') return false
