@@ -14,3 +14,9 @@ All script files have been bundled using Webpack into a single script file, bund
 ### Other notes
 
 - This project was completed part-way through my studies at CodeClan, prior to learning front-end frameworks. It is my intention to revisit this project and rebuild using React or similar JS framework.
+
+### Screenshots
+
+- [Main View (Top)](docs/main_view_top.png)
+- [Main View (Bottom)](docs/main_view_bottom.png)
+- [Mobile View](docs/mobile_view.png)
